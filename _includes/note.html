@@ -1,0 +1,17 @@
+{%- assign m = include.match -%}
+{%- if m.note_tribune or m.note_terrain or m.homme_du_soir -%}
+<aside class="note" aria-label="La note du virage">
+  <h2>La note du virage</h2>
+  <div class="note-items">
+    {%- if m.note_tribune %}
+    <div class="note-item"><span class="note-label">Tribune</span><span class="note-val rouge">{{ m.note_tribune }}<small>/10</small></span></div>
+    {%- endif %}
+    {%- if m.note_terrain %}
+    <div class="note-item"><span class="note-label">Terrain</span><span class="note-val">{{ m.note_terrain }}<small>/10</small></span></div>
+    {%- endif %}
+    {%- if m.homme_du_soir %}
+    <div class="note-item"><span class="note-label">L'homme du soir</span><span class="note-val nom">{{ m.homme_du_soir }}</span></div>
+    {%- endif %}
+  </div>
+</aside>
+{%- endif -%}

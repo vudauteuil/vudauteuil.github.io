@@ -1,0 +1,27 @@
+# Réglages techniques du site. Le nom affiché et les textes se changent
+# plutôt dans Pages CMS (menu « Réglages du site »).
+title: "Vu d'Auteuil"
+description: "Les matchs du PSG racontés depuis le virage, en brèves."
+lang: fr
+timezone: Europe/Paris
+permalink: /breves/:year/:month/:day/:title/
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: breve
+  - scope:
+      path: "pages"
+    values:
+      layout: page
+
+exclude:
+  - LISEZMOI.md
+  - pages-cms-config.txt

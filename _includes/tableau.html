@@ -1,0 +1,40 @@
+{%- assign m = include.match -%}
+{%- assign tb_buteurs = m.buteurs | default: "" -%}
+<div class="tableau">
+  <div class="tableau-score" role="group" aria-label="Score final">
+    {%- if m.domicile %}
+    <span>PSG</span>
+    <span class="chiffres"><span class="chiffre">{{ m.buts_psg }}</span><span class="tiret" aria-hidden="true">–</span><span class="chiffre">{{ m.buts_adversaire }}</span></span>
+    <span>{{ m.adversaire }}</span>
+    {%- else %}
+    <span>{{ m.adversaire }}</span>
+    <span class="chiffres"><span class="chiffre">{{ m.buts_adversaire }}</span><span class="tiret" aria-hidden="true">–</span><span class="chiffre">{{ m.buts_psg }}</span></span>
+    <span>PSG</span>
+    {%- endif %}
+  </div>
+  <div class="tableau-infos">
+    {%- if tb_buteurs != "" %}
+    <span class="tableau-buteurs">Buts : {{ tb_buteurs }}</span>
+    {%- endif %}
+    <span>{% if m.stade %}{{ m.stade }} · {% endif %}{% include date_fr.html date=m.date jour="oui" %}</span>
+    <span>{{ m.competition }}{% if m.journee %} · {{ m.journee }}{% endif %}</span>
+  </div>
+  {%- if include.notes %}
+  {%- if m.note_tribune or m.note_terrain or m.homme_du_soir %}
+  <div class="tableau-notes" aria-label="La note du virage">
+    <span class="tableau-notes-titre">La note du virage</span>
+    <div class="tableau-notes-items">
+      {%- if m.note_tribune %}
+      <div><span class="label">Tribune</span><span class="val rouge">{{ m.note_tribune }}<small>/10</small></span></div>
+      {%- endif %}
+      {%- if m.note_terrain %}
+      <div><span class="label">Terrain</span><span class="val">{{ m.note_terrain }}<small>/10</small></span></div>
+      {%- endif %}
+      {%- if m.homme_du_soir %}
+      <div><span class="label">L'homme du soir</span><span class="val nom">{{ m.homme_du_soir }}</span></div>
+      {%- endif %}
+    </div>
+  </div>
+  {%- endif %}
+  {%- endif %}
+</div>

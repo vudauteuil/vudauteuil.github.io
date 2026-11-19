@@ -1,0 +1,250 @@
+# Configuration de l'éditeur Pages CMS (https://pagescms.org)
+# Elle définit les formulaires que tu remplis pour écrire et modifier le site.
+
+media:
+  input: assets/images
+  output: /assets/images
+  rename: safe
+  categories: [image]
+
+content:
+  - name: breves
+    label: Brèves
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      fields: [title, date, adversaire, published]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Titre
+        type: string
+        required: true
+      - name: published
+        label: "Publiée (décoche pour garder un brouillon)"
+        type: boolean
+        default: true
+      - name: date
+        label: Date du match
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: competition
+        label: Compétition
+        type: select
+        required: true
+        options:
+          values: [Ligue 1, Ligue des champions, Coupe de France, Trophée des champions, Match amical]
+      - name: journee
+        label: Journée ou tour
+        type: string
+        description: "Ex. : 10e journée, 8e de finale aller…"
+      - name: adversaire
+        label: Adversaire
+        type: string
+        required: true
+      - name: domicile
+        label: Match au Parc (à domicile)
+        type: boolean
+        default: true
+      - name: buts_psg
+        label: Buts du PSG
+        type: number
+        required: true
+      - name: buts_adversaire
+        label: Buts de l'adversaire
+        type: number
+        required: true
+      - name: buteurs
+        label: Buteurs
+        type: string
+        description: "Ex. : Illia Zabarnyi (39e). Laisse vide en cas de 0-0."
+      - name: stade
+        label: Stade
+        type: string
+        default: Parc des Princes
+      - name: chapeau
+        label: Chapeau
+        type: text
+        description: "Une ou deux phrases d'accroche, affichées sous le titre."
+      - name: photo
+        label: Photo principale
+        type: image
+        description: "Une de tes photos, ou une photo dont l'auteur t'a donné l'accord."
+      - name: legende
+        label: Légende de la photo
+        type: string
+      - name: note_tribune
+        label: Note de la tribune (sur 10)
+        type: number
+      - name: note_terrain
+        label: Note du terrain (sur 10)
+        type: number
+      - name: homme_du_soir
+        label: L'homme du soir
+        type: string
+      - name: body
+        label: Texte de la brève
+        type: rich-text
+        description: "Le bouton citation met une phrase en exergue, en grandes capitales."
+
+  - name: reglages
+    label: Réglages du site
+    type: file
+    path: _data/reglages.yml
+    format: yaml
+    fields:
+      - name: signature
+        label: Ton nom de plume
+        type: string
+      - name: logo_debut
+        label: Logo, début (en blanc)
+        type: string
+      - name: logo_fin
+        label: Logo, fin (dans la case rouge)
+        type: string
+      - name: slogan
+        label: Slogan
+        type: string
+      - name: newsletter_lien
+        label: Lien d'inscription à la newsletter
+        type: string
+        description: "Laisse vide tant que tu n'as pas de newsletter : le bloc reste caché."
+      - name: instagram
+        label: Lien Instagram
+        type: string
+      - name: x
+        label: Lien X
+        type: string
+      - name: mention_independance
+        label: Mention en pied de page
+        type: text
+
+  - name: epopee
+    label: L'épopée
+    type: file
+    path: _data/epopee.yml
+    format: yaml
+    fields:
+      - name: saison
+        label: Saison
+        type: string
+      - name: chapitres
+        label: Chapitres
+        type: object
+        list: true
+        fields:
+          - name: numero
+            label: Numéro (I, II, III…)
+            type: string
+          - name: competition
+            label: Compétition
+            type: select
+            options:
+              values: [Ligue 1, Ligue des champions, Coupe de France, Trophée des champions, Match amical]
+          - name: statut
+            label: Où en est-on ?
+            type: text
+
+  - name: lexique
+    label: Le lexique
+    type: file
+    path: _data/lexique.yml
+    format: yaml
+    fields:
+      - name: mots
+        label: Mots
+        type: object
+        list: true
+        fields:
+          - name: mot
+            label: Mot
+            type: string
+          - name: definition
+            label: Définition
+            type: text
+
+  - name: tifos
+    label: La galerie des tifos
+    type: file
+    path: _data/tifos.yml
+    format: yaml
+    fields:
+      - name: tifos
+        label: Tifos
+        type: object
+        list: true
+        fields:
+          - name: titre
+            label: Titre du tifo
+            type: string
+          - name: affiche
+            label: Texte affiché sans photo
+            type: string
+            description: "Deux ou trois mots en grand, montrés tant qu'il n'y a pas de photo. Ex. : 35 ans"
+          - name: match
+            label: Match
+            type: string
+            description: "Ex. : PSG 1-0 Troyes"
+          - name: moment
+            label: Moment
+            type: string
+            description: "Ex. : Avant-match, première période…"
+          - name: photo
+            label: Photo
+            type: image
+            description: "Ta photo, prise depuis le virage."
+          - name: description
+            label: Ce qu'il représentait
+            type: text
+
+  - name: chants
+    label: Les chants
+    type: file
+    path: _data/chants.yml
+    format: yaml
+    fields:
+      - name: chants
+        label: Chants
+        type: object
+        list: true
+        fields:
+          - name: nom
+            label: Nom du chant
+            type: string
+          - name: air
+            label: Sur l'air de
+            type: string
+            description: "La mélodie d'origine, si tu la connais. Sinon, laisse vide."
+          - name: moment
+            label: Quand le chante-t-on ?
+            type: string
+          - name: histoire
+            label: Son histoire
+            type: text
+            description: "Raconte le chant avec tes mots. Ne recopie pas les paroles : elles sont protégées par le droit d'auteur."
+
+  - name: pages
+    label: Pages fixes
+    type: collection
+    path: pages
+    format: yaml-frontmatter
+    view:
+      primary: title
+    fields:
+      - name: title
+        label: Titre
+        type: string
+        required: true
+      - name: permalink
+        label: Adresse de la page
+        type: string
+        description: "Ex. : /a-propos/ — à ne pas modifier sur les pages existantes."
+      - name: body
+        label: Texte
+        type: rich-text

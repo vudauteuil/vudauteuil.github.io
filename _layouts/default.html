@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'fr' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Barlow+Condensed:wght@500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% feed_meta %}
+</head>
+<body>
+  {%- assign r = site.data.reglages -%}
+  {%- assign nl = r.newsletter_lien | default: "" -%}
+  {%- assign accueil = '/' | relative_url -%}
+  <a class="evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="manchette{% unless page.url == '/' %} manchette--compacte{% endunless %}">
+    <div class="conteneur manchette-logo">
+      <a class="logo" href="{{ accueil }}" aria-label="{{ site.title }}, accueil">{% include logo.html %}</a>
+    </div>
+    <nav class="manchette-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="{{ '/#breves' | relative_url }}">Les brèves</a></li>
+        <li><a href="{{ '/#epopee' | relative_url }}">L'épopée</a></li>
+        <li><a href="{{ '/#tifos' | relative_url }}">Les tifos</a></li>
+        <li><a href="{{ '/#parler-virage' | relative_url }}">Lexique et chants</a></li>
+        {%- if nl != "" %}
+        <li><a href="{{ nl }}">Newsletter</a></li>
+        {%- endif %}
+      </ul>
+    </nav>
+  </header>
+
+
+  <main id="contenu">
+    {{ content }}
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied-inner">
+      <div class="pied-marque">
+        <a class="logo" href="{{ accueil }}" aria-label="{{ site.title }}, accueil">{% include logo.html %}</a>
+        <p>{{ r.mention_independance }}</p>
+      </div>
+      <nav class="pied-nav" aria-label="Pied de page">
+        <a href="{{ '/a-propos/' | relative_url }}">À propos</a>
+        <a href="{{ '/charte/' | relative_url }}">Charte éditoriale</a>
+        <a href="{{ '/mentions-legales/' | relative_url }}">Mentions légales</a>
+        <a href="{{ '/feed.xml' | relative_url }}">Flux RSS</a>
+        {%- assign insta = r.instagram | default: "" -%}
+        {%- if insta != "" %}
+        <a href="{{ insta }}">Instagram</a>
+        {%- endif %}
+        {%- assign compte_x = r.x | default: "" -%}
+        {%- if compte_x != "" %}
+        <a href="{{ compte_x }}">X</a>
+        {%- endif %}
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

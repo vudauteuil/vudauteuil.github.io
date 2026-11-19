@@ -1,0 +1,273 @@
+/* Vu d'Auteuil — feuille de style
+   Direction : le journal de tribune. Une maquette de quotidien sportif
+   (manchette, rubriques, filets) croisée avec le tableau d'affichage du stade.
+   Les couleurs se changent ici, en une seule fois. */
+:root {
+  --nuit: #0E1A33;
+  --nuit-2: #16264A;
+  --nuit-fonce: #0A1428;
+  --filet-nuit: #2A3A60;
+  --rouge: #C8102E;
+  --rouge-fonce: #A50D26;
+  --rouge-vif: #E0313F;
+  --papier: #F4F1EA;
+  --blanc: #FFFFFF;
+  --encre: #12162A;
+  --gris: #586074;
+  --gris-clair: #A9B4C8;
+  --gris-nuit: #C3CBDA;
+  --texte-nuit: #D5DAE5;
+  --filet: #DAD4C7;
+  --titre: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --etiquette: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --texte: 'Newsreader', Georgia, serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--papier); color: var(--encre); font-family: var(--texte); font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3, h4 { text-wrap: balance; }
+a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.evitement { position: absolute; left: -9999px; top: 0; }
+.evitement:focus { left: 16px; top: 16px; z-index: 10; background: var(--blanc); color: var(--encre); padding: 10px 14px; }
+.conteneur { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.conteneur-lecture { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* ---------- Libellés communs ---------- */
+.etiquette { font-family: var(--etiquette); font-weight: 600; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; }
+.pastille { display: inline-flex; align-items: center; padding: 5px 10px 4px; background: var(--rouge); color: var(--blanc); font-family: var(--etiquette); font-weight: 700; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; }
+.rubrique { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-family: var(--etiquette); font-weight: 600; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); }
+
+/* ---------- Logo : le nom coupé par la bande du maillot ---------- */
+.logo { display: inline-flex; align-items: stretch; gap: 0.18em; color: var(--blanc); text-decoration: none; font-family: var(--titre); line-height: 1; letter-spacing: 0.02em; }
+.logo-mot { display: inline-flex; align-items: center; }
+.logo-bande { width: 0.42em; background: var(--rouge); border-left: 0.07em solid var(--blanc); border-right: 0.07em solid var(--blanc); margin: -0.12em 0.04em; }
+
+/* ---------- Manchette ---------- */
+.manchette { background: var(--nuit); color: var(--blanc); }
+.manchette-logo { display: flex; justify-content: center; padding-top: 36px; padding-bottom: 30px; }
+.manchette-logo .logo { font-size: clamp(44px, 7vw, 84px); }
+.manchette-nav { border-top: 1px solid var(--filet-nuit); }
+.manchette-nav ul { list-style: none; margin: 0 auto; padding: 0 32px; max-width: 1240px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 32px; }
+.manchette-nav a { display: inline-flex; align-items: center; min-height: 48px; color: var(--blanc); text-decoration: none; font-family: var(--etiquette); font-weight: 600; font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 3px solid transparent; }
+.manchette-nav a:hover { border-bottom-color: var(--rouge-vif); }
+.manchette--compacte .manchette-logo { padding-top: 18px; padding-bottom: 16px; }
+.manchette--compacte .manchette-logo .logo { font-size: clamp(36px, 5vw, 52px); }
+
+
+/* ---------- À la une ---------- */
+.une { padding: 56px 0 0; }
+.une-grille { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: center; }
+.une-grille--seule { grid-template-columns: minmax(0, 1fr); }
+.une-grille--seule .une-titre { max-width: 14ch; }
+.une-grille--seule .une-chapeau { max-width: 44ch; }
+.une-texte { display: flex; flex-direction: column; gap: 20px; }
+.une-titre { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(56px, 8vw, 120px); line-height: 0.92; letter-spacing: 0.005em; text-transform: uppercase; color: var(--nuit); }
+.une-titre a { text-decoration: none; }
+.une-titre a:hover { color: var(--rouge); }
+.une-chapeau { margin: 0; max-width: 34ch; font-style: italic; font-size: 26px; line-height: 1.4; }
+.signature { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; font-family: var(--etiquette); font-weight: 500; font-size: 17px; color: var(--gris); }
+.signature span + span::before { content: "·"; margin-right: 18px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 4px; }
+.bouton { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; background: var(--nuit); color: var(--blanc); text-decoration: none; font-family: var(--etiquette); font-weight: 700; font-size: 19px; letter-spacing: 0.1em; text-transform: uppercase; }
+.bouton:hover { background: var(--rouge); }
+.bouton--rouge { background: var(--rouge); }
+.bouton--rouge:hover { background: var(--rouge-fonce); }
+.une-visuel { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.une-visuel svg, .une-visuel img { width: 100%; height: auto; display: block; }
+.une-visuel img { aspect-ratio: 5 / 3; object-fit: cover; }
+.une-visuel figcaption { font-family: var(--etiquette); font-weight: 500; font-size: 15px; letter-spacing: 0.06em; color: var(--gris); }
+
+/* ---------- Tableau d'affichage ---------- */
+.tableau { margin-top: 48px; background: var(--nuit); color: var(--blanc); display: grid; grid-template-columns: auto minmax(260px, 1fr) auto; align-items: stretch; border-top: 4px solid var(--rouge); }
+.tableau > * { padding: 24px 28px; }
+.tableau-score { display: flex; align-items: center; gap: 18px; font-family: var(--titre); font-size: clamp(30px, 3.6vw, 44px); line-height: 1; text-transform: uppercase; }
+.chiffres { display: inline-flex; align-items: center; gap: 6px; }
+.chiffre { display: inline-flex; align-items: center; justify-content: center; min-width: 1.35em; padding: 0.14em 0.12em 0.08em; background: var(--nuit-fonce); border: 1px solid var(--filet-nuit); color: #FFD34D; font-variant-numeric: tabular-nums; }
+.tiret { color: var(--gris-clair); }
+.tableau-infos { display: flex; flex-direction: column; justify-content: center; gap: 4px; border-left: 1px solid var(--filet-nuit); font-family: var(--etiquette); font-weight: 500; font-size: 17px; color: var(--gris-clair); }
+.tableau-buteurs { color: var(--blanc); font-weight: 700; font-size: 19px; }
+.tableau-notes { display: flex; flex-direction: column; justify-content: center; gap: 8px; background: var(--nuit-2); border-left: 1px solid var(--filet-nuit); }
+.tableau-notes-titre { font-family: var(--etiquette); font-weight: 600; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris-clair); }
+.tableau-notes-items { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: flex-end; }
+.tableau-notes-items > div { display: flex; flex-direction: column; gap: 2px; }
+.tableau-notes .label { font-family: var(--etiquette); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-clair); }
+.tableau-notes .val { font-family: var(--titre); font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.tableau-notes .val small { font-size: 0.5em; color: var(--gris-clair); margin-left: 2px; }
+.tableau-notes .val.rouge { color: var(--rouge-vif); }
+.tableau-notes .val.nom { font-size: 24px; text-transform: uppercase; }
+
+/* ---------- Sections ---------- */
+.section { padding: 96px 0; }
+.section--blanc { background: var(--blanc); }
+.section--papier { background: var(--papier); }
+.section--nuit { background: var(--nuit); color: var(--blanc); }
+.section-tete { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 48px; align-items: end; padding-bottom: 24px; margin-bottom: 40px; border-bottom: 3px solid currentColor; }
+.section-tete .etiquette { grid-column: 1 / -1; color: var(--rouge); }
+.section--nuit .section-tete .etiquette { color: var(--rouge-vif); }
+.section-titre { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(48px, 6vw, 80px); line-height: 0.95; text-transform: uppercase; }
+.section-intro { margin: 0; max-width: 46ch; font-size: 20px; line-height: 1.55; color: var(--gris); }
+.section--nuit .section-intro { color: var(--texte-nuit); }
+
+/* ---------- L'épopée : un billet par compétition ---------- */
+.billets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.billet { display: grid; grid-template-columns: 92px minmax(0, 1fr); background: var(--papier); border: 1px solid var(--filet); }
+.billet-talon { display: flex; align-items: center; justify-content: center; background: var(--nuit); color: var(--blanc); font-family: var(--titre); font-size: 44px; border-right: 2px dashed var(--filet); }
+.billet-corps { display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 20px; }
+.billet-corps h3 { margin: 0; font-family: var(--etiquette); font-weight: 700; font-size: 24px; letter-spacing: 0.06em; text-transform: uppercase; }
+.billet-corps p { margin: 0; font-size: 18px; line-height: 1.5; }
+.billet-lien, .billet-vide { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--filet); display: inline-flex; align-items: center; min-height: 44px; font-family: var(--etiquette); font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+.billet-lien { color: var(--rouge); text-decoration: none; }
+.billet-lien:hover { text-decoration: underline; }
+.billet-vide { color: var(--gris); font-weight: 600; }
+
+/* ---------- Les brèves, numérotées comme un quotidien ---------- */
+.liste-breves { list-style: none; margin: 0; padding: 0; }
+.liste-breves li { border-bottom: 1px solid var(--filet); }
+.liste-breves li:first-child { border-top: 1px solid var(--filet); }
+.lb-lien { display: grid; grid-template-columns: 96px 210px minmax(0, 1fr) auto; gap: 8px 32px; align-items: center; padding: 28px 0; color: var(--encre); text-decoration: none; }
+.lb-numero { font-family: var(--titre); font-size: 44px; line-height: 1; color: var(--rouge); }
+.lb-numero small { display: block; font-family: var(--etiquette); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; color: var(--gris); text-transform: uppercase; }
+.lb-match { display: flex; flex-direction: column; gap: 6px; font-family: var(--etiquette); }
+.lb-score { align-self: flex-start; padding: 4px 10px 3px; background: var(--nuit); color: var(--blanc); font-weight: 700; font-size: 19px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.lb-date { font-weight: 600; font-size: 15px; letter-spacing: 0.08em; color: var(--gris); text-transform: uppercase; }
+.lb-texte { display: flex; flex-direction: column; gap: 6px; }
+.lb-titre { font-family: var(--titre); font-size: 36px; line-height: 1; text-transform: uppercase; }
+.lb-chapeau { font-style: italic; font-size: 18px; line-height: 1.45; color: var(--gris); }
+.lb-lire { font-family: var(--etiquette); font-weight: 700; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); }
+.lb-lien:hover .lb-titre { color: var(--rouge); }
+.lb-suite { padding: 24px 0; font-style: italic; font-size: 19px; color: var(--gris); }
+
+/* ---------- La galerie des tifos ---------- */
+.tifos { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+.tifo { margin: 0; display: flex; flex-direction: column; background: var(--nuit-2); border: 1px solid var(--filet-nuit); }
+.tifo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.tifo-affiche { position: relative; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; padding: 28px; background: var(--rouge); color: var(--blanc); text-align: center; overflow: hidden; }
+.tifo-affiche::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 22%; transform: translateX(-50%); background: var(--nuit); border-left: 10px solid var(--blanc); border-right: 10px solid var(--blanc); opacity: 0.18; }
+.tifo-affiche span { position: relative; font-family: var(--titre); font-size: clamp(64px, 9vw, 120px); line-height: 0.9; text-transform: uppercase; }
+.tifo figcaption { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 26px; }
+.tifo-meta { font-family: var(--etiquette); font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-clair); }
+.tifo h3 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 30px; line-height: 1.05; text-transform: uppercase; }
+.tifo p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--texte-nuit); }
+.tifo--appel { align-items: flex-start; justify-content: center; gap: 12px; padding: 28px; border-style: dashed; background: transparent; }
+.tifo--appel p { color: var(--gris-clair); font-style: italic; }
+
+/* ---------- Parler virage : lexique et chants ---------- */
+.parler { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.parler h3 { margin: 0 0 20px; font-family: var(--etiquette); font-weight: 700; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); }
+.lexique { margin: 0; }
+.mot { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 24px; padding: 18px 0; border-top: 1px solid var(--filet); }
+.mot:last-child { border-bottom: 1px solid var(--filet); }
+.mot dt { font-family: var(--titre); font-size: 26px; line-height: 1.1; text-transform: uppercase; }
+.mot dd { margin: 0; font-size: 17px; line-height: 1.55; }
+.chants-intro { margin: 0 0 20px; font-style: italic; font-size: 17px; color: var(--gris); }
+.chants-liste { display: flex; flex-direction: column; gap: 16px; }
+.chant { display: flex; flex-direction: column; gap: 6px; padding: 22px 24px; background: var(--nuit); color: var(--blanc); }
+.chant h4 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 28px; line-height: 1.05; text-transform: uppercase; }
+.chant-meta { margin: 0; font-family: var(--etiquette); font-weight: 600; font-size: 17px; letter-spacing: 0.03em; }
+.chant-meta span { margin-right: 8px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-clair); }
+.chant-histoire { margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: var(--texte-nuit); }
+
+/* ---------- Newsletter ---------- */
+.newsletter { background: var(--rouge); color: var(--blanc); padding: 72px 0; }
+.newsletter-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 64px; }
+.newsletter h2 { margin: 0; max-width: 18ch; font-family: var(--titre); font-weight: 400; font-size: clamp(36px, 4.5vw, 56px); line-height: 1; text-transform: uppercase; }
+.newsletter p { margin: 10px 0 0; font-size: 20px; }
+
+/* ---------- Pied de page ---------- */
+.pied { background: var(--nuit-fonce); color: var(--gris-clair); border-top: 6px solid var(--rouge); box-shadow: inset 0 3px 0 var(--blanc); }
+.pied-inner { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 28px 48px; padding-top: 56px; padding-bottom: 56px; }
+.pied-marque { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.pied-marque .logo { font-size: 34px; align-self: flex-start; }
+.pied-marque p { margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.55; color: var(--gris-nuit); }
+.pied-nav { display: grid; grid-template-columns: repeat(2, minmax(0, auto)); gap: 0 40px; font-family: var(--etiquette); font-weight: 600; font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; }
+.pied-nav a { color: var(--gris-nuit); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.pied-nav a:hover { color: var(--blanc); }
+
+/* ---------- Page d'une brève ---------- */
+.article { padding: 48px 0 96px; }
+.ariane { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-bottom: 20px; font-family: var(--etiquette); font-weight: 600; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris); }
+.ariane a { color: var(--gris); display: inline-flex; align-items: center; min-height: 44px; }
+.article-tete { display: flex; flex-direction: column; gap: 18px; padding-bottom: 28px; border-bottom: 3px solid var(--encre); }
+.article-titre { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(56px, 7.5vw, 104px); line-height: 0.92; text-transform: uppercase; color: var(--nuit); }
+.chapeau { margin: 0; font-style: italic; font-size: 26px; line-height: 1.4; }
+.article .tableau { margin-top: 28px; grid-template-columns: minmax(0, 1fr); }
+.article .tableau-infos { flex-direction: row; flex-wrap: wrap; gap: 4px 20px; border-left: 0; border-top: 1px solid var(--filet-nuit); }
+.photo { margin: 32px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.photo figcaption { font-family: var(--etiquette); font-size: 16px; color: var(--gris); }
+.corps { margin-top: 40px; font-size: 21px; line-height: 1.7; }
+.corps p { margin: 0 0 24px; }
+.corps > p:first-of-type::first-line { font-variant: small-caps; letter-spacing: 0.04em; color: var(--nuit); }
+.corps blockquote { position: relative; margin: 40px 0; padding: 36px 0 30px; border-top: 1px solid var(--encre); border-bottom: 1px solid var(--encre); font-family: var(--titre); font-size: clamp(30px, 3.6vw, 40px); line-height: 1.1; text-transform: uppercase; color: var(--nuit); }
+.corps blockquote::before { content: ""; position: absolute; top: -9px; left: 0; width: 72px; height: 16px; background: var(--rouge); box-shadow: inset 0 3px 0 var(--blanc), inset 0 -3px 0 var(--blanc); }
+.corps blockquote p { margin: 0; }
+.corps img { margin: 32px 0; }
+.corps h2, .corps h3 { font-family: var(--titre); font-weight: 400; line-height: 1.05; text-transform: uppercase; }
+
+.note { margin-top: 16px; background: var(--nuit); color: var(--blanc); padding: 28px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 48px; border-top: 4px solid var(--rouge); }
+.note h2 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 30px; text-transform: uppercase; }
+.note-items { display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: flex-end; }
+.note-item { display: flex; flex-direction: column; gap: 2px; }
+.note-label { font-family: var(--etiquette); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-clair); }
+.note-val { font-family: var(--titre); font-size: 42px; line-height: 1; font-variant-numeric: tabular-nums; }
+.note-val small { font-size: 0.5em; color: var(--gris-clair); }
+.note-val.rouge { color: var(--rouge-vif); }
+.note-val.nom { font-size: 30px; text-transform: uppercase; }
+
+.suite { margin: 40px 0 0; text-align: center; font-style: italic; font-size: 22px; color: var(--gris); }
+.partage { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; border-top: 1px solid var(--filet); padding-top: 24px; }
+.retour { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--etiquette); font-weight: 700; font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--encre); }
+.partage-boutons { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.partage-label { font-family: var(--etiquette); font-weight: 600; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); }
+.bouton-contour { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 2px solid var(--encre); background: transparent; color: var(--encre); text-decoration: none; font-family: var(--etiquette); font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+.bouton-contour:hover { background: var(--encre); color: var(--blanc); }
+.voisins { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.voisin { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; border: 1px solid var(--filet); background: var(--blanc); text-decoration: none; }
+.voisin span { font-family: var(--etiquette); font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); }
+.voisin strong { font-family: var(--titre); font-weight: 400; font-size: 24px; text-transform: uppercase; }
+.voisin--suivant { text-align: right; grid-column: 2; }
+
+/* ---------- Pages fixes ---------- */
+.page { padding: 56px 0 96px; }
+.page-titre { margin: 0 0 28px; padding-bottom: 20px; border-bottom: 3px solid var(--encre); font-family: var(--titre); font-weight: 400; font-size: clamp(48px, 6vw, 72px); line-height: 1; text-transform: uppercase; }
+.page-corps { font-size: 20px; line-height: 1.65; }
+.page-corps h2 { margin: 36px 0 10px; font-family: var(--etiquette); font-weight: 700; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rouge); }
+.page-corps p { margin: 0 0 18px; }
+
+/* ---------- Tablette ---------- */
+@media (max-width: 980px) {
+  .une-grille { grid-template-columns: minmax(0, 1fr); }
+  .tableau { grid-template-columns: minmax(0, 1fr); }
+  .tableau-infos, .tableau-notes { border-left: 0; border-top: 1px solid var(--filet-nuit); }
+  .billets { grid-template-columns: minmax(0, 1fr); }
+  .parler { grid-template-columns: minmax(0, 1fr); }
+  .section-tete { grid-template-columns: minmax(0, 1fr); }
+  .lb-lien { grid-template-columns: 72px minmax(0, 1fr); }
+  .lb-match { grid-column: 2; flex-direction: row; align-items: center; gap: 12px; }
+  .lb-texte { grid-column: 2; }
+  .lb-lire { grid-column: 2; }
+  .lb-numero { grid-row: 1 / span 3; align-self: start; }
+}
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 600px) {
+  .conteneur, .conteneur-lecture { padding: 0 20px; }
+  .manchette-nav ul { gap: 0 18px; padding: 0 20px; }
+  .manchette-nav a { font-size: 15px; }
+  .une { padding-top: 36px; }
+  .une-chapeau, .chapeau { font-size: 21px; }
+  .section { padding: 64px 0; }
+  .tableau > * { padding: 20px; }
+  .mot { grid-template-columns: minmax(0, 1fr); }
+  .tifos { grid-template-columns: minmax(0, 1fr); }
+  .corps { font-size: 19px; }
+  .note { padding: 24px 20px; }
+  .voisins { grid-template-columns: minmax(0, 1fr); }
+  .voisin--suivant { grid-column: auto; }
+  .pied-nav { grid-template-columns: minmax(0, 1fr); }
+}

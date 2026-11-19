@@ -1,0 +1,189 @@
+---
+layout: default
+title: Accueil
+---
+{%- assign r = site.data.reglages -%}
+{%- assign nl = r.newsletter_lien | default: "" -%}
+{%- assign derniere = site.posts.first -%}
+
+{%- if derniere %}
+{%- assign photo_une = derniere.photo | default: "" -%}
+<section class="une" aria-labelledby="une-titre">
+  <div class="conteneur">
+    <div class="une-grille{% if photo_une == "" %} une-grille--seule{% endif %}">
+      <div class="une-texte">
+        <p class="rubrique"><span class="pastille">À la une</span> Brève n°{{ site.posts.size }} · {{ derniere.competition }}{% if derniere.journee %}, {{ derniere.journee }}{% endif %}</p>
+        <h1 id="une-titre" class="une-titre"><a href="{{ derniere.url | relative_url }}">{{ derniere.title }}</a></h1>
+        {%- if derniere.chapeau %}
+        <p class="une-chapeau">{{ derniere.chapeau }}</p>
+        {%- endif %}
+        <p class="signature">
+          <span>Par {{ r.signature }}</span>
+          <span>{% include date_fr.html date=derniere.date %}</span>
+          <span>Lecture : {{ derniere.content | strip_html | number_of_words | divided_by: 200 | plus: 1 }} min</span>
+        </p>
+        <div class="actions">
+          <a class="bouton bouton--rouge" href="{{ derniere.url | relative_url }}">Lire la brève <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      {%- if photo_une != "" %}
+      <figure class="une-visuel">
+        <img src="{{ photo_une | relative_url }}" alt="{{ derniere.legende | default: derniere.title }}">
+        {%- if derniere.legende %}
+        <figcaption>{{ derniere.legende }}</figcaption>
+        {%- endif %}
+      </figure>
+      {%- endif %}
+    </div>
+    {% include tableau.html match=derniere notes="oui" %}
+  </div>
+</section>
+{%- endif %}
+
+<section id="breves" class="section section--papier" aria-labelledby="breves-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">Les archives</p>
+      <h2 id="breves-titre" class="section-titre">Les brèves</h2>
+      <p class="section-intro">Chaque match raconté depuis les gradins, le soir même ou au réveil.</p>
+    </div>
+    <ol class="liste-breves">
+      {%- for b in site.posts %}
+      <li>
+        <a class="lb-lien" href="{{ b.url | relative_url }}">
+          <span class="lb-numero"><small>Brève</small>{{ site.posts.size | minus: forloop.index0 }}</span>
+          <span class="lb-match">
+            <span class="lb-score">{% if b.domicile %}PSG {{ b.buts_psg }}–{{ b.buts_adversaire }} {{ b.adversaire }}{% else %}{{ b.adversaire }} {{ b.buts_adversaire }}–{{ b.buts_psg }} PSG{% endif %}</span>
+            <span class="lb-date">{% include date_fr.html date=b.date %}</span>
+          </span>
+          <span class="lb-texte">
+            <span class="lb-titre">{{ b.title }}</span>
+            {%- if b.chapeau %}
+            <span class="lb-chapeau">{{ b.chapeau }}</span>
+            {%- endif %}
+          </span>
+          <span class="lb-lire">Lire →</span>
+        </a>
+      </li>
+      {%- endfor %}
+      <li class="lb-suite">La suite au prochain numéro.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="epopee" class="section section--blanc" aria-labelledby="epopee-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">Le feuilleton de la saison</p>
+      <h2 id="epopee-titre" class="section-titre">L'épopée {{ site.data.epopee.saison }}</h2>
+      <p class="section-intro">Un billet par compétition. Chaque brève vient s'ajouter au récit.</p>
+    </div>
+    <div class="billets">
+      {%- for ch in site.data.epopee.chapitres %}
+      {%- assign episodes = site.posts | where: "competition", ch.competition %}
+      <article class="billet">
+        <span class="billet-talon" aria-hidden="true">{{ ch.numero }}</span>
+        <div class="billet-corps">
+          <h3>{{ ch.competition }}</h3>
+          <p>{{ ch.statut }}</p>
+          {%- if episodes.size > 0 %}
+          <a class="billet-lien" href="{{ episodes.first.url | relative_url }}">Dernier épisode : {{ episodes.first.title }} →</a>
+          {%- else %}
+          <span class="billet-vide">Premier épisode à écrire</span>
+          {%- endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- assign tifos = site.data.tifos.tifos %}
+<section id="tifos" class="section section--nuit" aria-labelledby="tifos-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">La galerie</p>
+      <h2 id="tifos-titre" class="section-titre">Les tifos</h2>
+      <p class="section-intro">Les voiles, les bâches et les cartons de la saison, avec ce qu'ils racontaient.</p>
+    </div>
+    <div class="tifos">
+      {%- for t in tifos %}
+      {%- assign t_photo = t.photo | default: "" %}
+      <figure class="tifo">
+        {%- if t_photo != "" %}
+        <img src="{{ t_photo | relative_url }}" alt="{{ t.titre }}">
+        {%- else %}
+        <div class="tifo-affiche" aria-hidden="true"><span>{{ t.affiche | default: t.titre }}</span></div>
+        {%- endif %}
+        <figcaption>
+          <span class="tifo-meta">{{ t.match }}{% if t.moment %} · {{ t.moment }}{% endif %}</span>
+          <h3>{{ t.titre }}</h3>
+          <p>{{ t.description }}</p>
+        </figcaption>
+      </figure>
+      {%- endfor %}
+      <div class="tifo tifo--appel">
+        <span class="tifo-meta">Prochain tifo</span>
+        <p>La prochaine voile s'affichera ici, avec ta photo prise depuis le virage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parler-virage" class="section section--blanc" aria-labelledby="parler-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">Parler virage</p>
+      <h2 id="parler-titre" class="section-titre">Lexique et chants</h2>
+      <p class="section-intro">Les mots et les chants de la tribune, pour ceux qui découvrent et pour ceux qui n'ont jamais eu besoin qu'on les leur explique.</p>
+    </div>
+    <div class="parler">
+      <div>
+        <h3>Le lexique</h3>
+        <dl class="lexique">
+          {%- for e in site.data.lexique.mots %}
+          <div class="mot">
+            <dt>{{ e.mot }}</dt>
+            <dd>{{ e.definition }}</dd>
+          </div>
+          {%- endfor %}
+        </dl>
+      </div>
+      {%- assign chants = site.data.chants.chants %}
+      {%- if chants.size > 0 %}
+      <div>
+        <h3>Le carnet de chants</h3>
+        <p class="chants-intro">On raconte les chants, on ne recopie pas les paroles : pour les apprendre, rien ne vaut le virage.</p>
+        <div class="chants-liste">
+          {%- for c in chants %}
+          {%- assign c_air = c.air | default: "" %}
+          {%- assign c_moment = c.moment | default: "" %}
+          <article class="chant">
+            <h4>{{ c.nom }}</h4>
+            {%- if c_air != "" %}
+            <p class="chant-meta"><span>Sur l'air de</span>{{ c_air }}</p>
+            {%- endif %}
+            {%- if c_moment != "" %}
+            <p class="chant-meta"><span>Quand</span>{{ c_moment }}</p>
+            {%- endif %}
+            <p class="chant-histoire">{{ c.histoire }}</p>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+{%- if nl != "" %}
+<section class="newsletter" aria-labelledby="newsletter-titre">
+  <div class="conteneur newsletter-inner">
+    <div>
+      <h2 id="newsletter-titre">Le coup de sifflet final, dans ta boîte</h2>
+      <p>Une brève après chaque match, le soir même ou au réveil. Rien d'autre.</p>
+    </div>
+    <a class="bouton" href="{{ nl }}">S'abonner</a>
+  </div>
+</section>
+{%- endif %}

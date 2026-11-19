@@ -1,0 +1,86 @@
+---
+layout: default
+---
+{%- assign r = site.data.reglages -%}
+{%- assign minutes = content | strip_html | number_of_words | divided_by: 200 | plus: 1 -%}
+{%- capture lien %}{{ page.url | absolute_url }}{% endcapture -%}
+{%- assign photo = page.photo | default: "" -%}
+{%- assign numero = 0 -%}
+{%- for p in site.posts -%}
+  {%- if p.url == page.url -%}{%- assign numero = site.posts.size | minus: forloop.index0 -%}{%- endif -%}
+{%- endfor -%}
+<article class="article">
+  <div class="conteneur-lecture">
+
+    <nav class="ariane" aria-label="Fil d'Ariane">
+      <a href="{{ '/' | relative_url }}">Accueil</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ '/#breves' | relative_url }}">Les brèves</a>
+    </nav>
+
+    <header class="article-tete">
+      <p class="rubrique"><span class="pastille">Brève n°{{ numero }}</span> {{ page.competition }}{% if page.journee %} · {{ page.journee }}{% endif %}</p>
+      <h1 class="article-titre">{{ page.title }}</h1>
+      {%- if page.chapeau %}
+      <p class="chapeau">{{ page.chapeau }}</p>
+      {%- endif %}
+      <p class="signature">
+        <span>Par {{ r.signature }}</span>
+        <span>{% include date_fr.html date=page.date %}</span>
+        <span>Lecture : {{ minutes }} min</span>
+      </p>
+    </header>
+
+    {% include tableau.html match=page %}
+
+    {%- if photo != "" %}
+    <figure class="photo">
+      <img src="{{ photo | relative_url }}" alt="{{ page.legende | default: page.title }}">
+      {%- if page.legende %}
+      <figcaption>{{ page.legende }}</figcaption>
+      {%- endif %}
+    </figure>
+    {%- endif %}
+
+    <div class="corps">
+      {{ content }}
+    </div>
+
+    {% include note.html match=page %}
+
+    <p class="suite">La suite au prochain numéro.</p>
+
+    <div class="partage">
+      <a class="retour" href="{{ '/#breves' | relative_url }}">← Toutes les brèves</a>
+      <div class="partage-boutons">
+        <span class="partage-label">Partager</span>
+        <a class="bouton-contour" href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&amp;url={{ lien | url_encode }}" target="_blank" rel="noopener">X</a>
+        <a class="bouton-contour" href="https://wa.me/?text={{ page.title | append: ' ' | append: lien | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
+        <button type="button" class="bouton-contour" data-copier="{{ lien }}">Copier le lien</button>
+      </div>
+    </div>
+
+    {%- if page.previous or page.next %}
+    <nav class="voisins" aria-label="Autres brèves">
+      {%- if page.previous %}
+      <a class="voisin" href="{{ page.previous.url | relative_url }}"><span>← Brève précédente</span><strong>{{ page.previous.title }}</strong></a>
+      {%- endif %}
+      {%- if page.next %}
+      <a class="voisin voisin--suivant" href="{{ page.next.url | relative_url }}"><span>Brève suivante →</span><strong>{{ page.next.title }}</strong></a>
+      {%- endif %}
+    </nav>
+    {%- endif %}
+
+  </div>
+</article>
+<script>
+  document.querySelectorAll('[data-copier]').forEach(function (bouton) {
+    bouton.addEventListener('click', function () {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(bouton.getAttribute('data-copier')).then(function () {
+        bouton.textContent = 'Lien copié';
+        setTimeout(function () { bouton.textContent = 'Copier le lien'; }, 2000);
+      }).catch(function () {});
+    });
+  });
+</script>

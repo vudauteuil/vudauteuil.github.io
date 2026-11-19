@@ -1,0 +1,6 @@
+{%- assign df_jours = "dimanche,lundi,mardi,mercredi,jeudi,vendredi,samedi" | split: "," -%}
+{%- assign df_mois = "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre" | split: "," -%}
+{%- assign df_j = include.date | date: "%w" | plus: 0 -%}
+{%- assign df_m = include.date | date: "%-m" | minus: 1 -%}
+{%- if include.jour -%}{{ df_jours[df_j] }} {% endif -%}
+{{- include.date | date: "%-d" }} {{ df_mois[df_m] }} {{ include.date | date: "%Y" -}}
