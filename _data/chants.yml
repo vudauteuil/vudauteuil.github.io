@@ -1,13 +1,15 @@
 chants:
-  - nom: "Tous ensemble on chantera"
-    air: ""
-    moment: "Les grands soirs, et surtout pour fêter une victoire."
-    histoire: "Né en tribune Auteuil vers 2016, au retour des ultras au Parc, il est devenu l'hymne officieux du club. Warren Zaïre-Emery l'a même lancé au mégaphone en 2023."
-  - nom: "Ô Ville Lumière"
-    air: "Flower of Scotland, l'hymne écossais"
-    moment: ""
-    histoire: "Repris par les ultras parisiens dans les années 90. Après les attentats de novembre 2015, il a accompagné l'entrée des joueurs au Parc."
-  - nom: "Allez Paris, Paris SG"
-    air: ""
-    moment: "Pour relancer la tribune, porté par les tambours."
-    histoire: "Un classique du virage, simple et répétitif, dont l'air a servi à d'autres chants."
+  - nom: Tous ensemble on chantera
+    moment: Les grands soirs, et surtout pour fêter une victoire.
+    histoire: "Né en tribune Auteuil vers 2016, il est devenu l'hymne officieux du
+      club. "
+  - nom: Ô Ville Lumière
+    air: Flower of Scotland, l'hymne écossais
+    moment: Généralement en fin de première mi-temps ou lorsqu'il y a une raison qui
+      dépasse le match
+    histoire: Repris par les ultras parisiens dans les années 90.
+  - nom: Cette chanson capitale
+    air: Milord d'Edith Piaf
+    moment: Pour relancer la tribune, porté par les tambours.
+    histoire: Un classique du virage, simple et répétitif, dont l'air a servi à
+      d'autres chants.
