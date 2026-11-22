@@ -2,9 +2,12 @@
 title: À propos
 permalink: /a-propos/
 ---
-Chaque match du PSG, raconté en une brève, depuis les gradins du Virage Auteuil. L'avant-match, le tifo, les chants, le moment où ça bascule et le retour à la maison. 
+Chaque match du PSG à domicile, raconté en une brève depuis les gradins du Virage Auteuil.
 
-Ce sont les arcanes du Virage Auteuil.  
-Raconté par un supporter du Paris Saint Germain.
+L’avant-match et ses rituels. Le tifo qui se déploie. Les chants qui font vibrer le béton. Le moment où tout bascule. Puis le retour à la maison, la tête pleine de bruit et les cordes vocales en RTT.
 
-Ce blog est le témoignage d'un supporter indépendant. Il n'a aucun lien avec la direction du Paris Saint-Germain ni avec le Collectif Ultras Paris, et ne parle au nom de personne d'autre que son auteur.
+Bienvenue dans les arcanes du virage, racontés par un supporter parmi des milliers.
+
+**Qui tient la plume ?**
+
+Un supporter indépendant, qui ne parle qu’en son nom. Ce blog n’a aucun lien avec le Paris Saint-Germain ni avec le Collectif Ultras Paris. Chaque brève raconte ce que son auteur a vu et ressenti depuis sa place : un regard de tribune, subjectif et assumé.
