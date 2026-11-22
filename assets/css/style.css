@@ -256,7 +256,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 
 /* ---------- Téléphone ---------- */
 @media (max-width: 600px) {
-  .conteneur, .conteneur-lecture { padding: 0 20px; }
+  .conteneur, .conteneur-lecture { padding-left: 20px; padding-right: 20px; }
   .manchette-nav ul { gap: 0 18px; padding: 0 20px; }
   .manchette-nav a { font-size: 15px; }
   .une { padding-top: 36px; }
