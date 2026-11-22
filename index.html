@@ -76,7 +76,7 @@ title: Accueil
     <div class="section-tete">
       <p class="etiquette">Le feuilleton de la saison</p>
       <h2 id="epopee-titre" class="section-titre">L'épopée {{ site.data.epopee.saison }}</h2>
-      <p class="section-intro">Un billet par compétition. Chaque brève vient s'ajouter au récit.</p>
+      <p class="section-intro">Un billet par compétition.</p>
     </div>
     <div class="billets">
       {%- for ch in site.data.epopee.chapitres %}
@@ -153,7 +153,7 @@ title: Accueil
       {%- if chants.size > 0 %}
       <div>
         <h3>Le carnet de chants</h3>
-        <p class="chants-intro">On raconte les chants, on ne recopie pas les paroles : pour les apprendre, rien ne vaut le virage.</p>
+        <p class="chants-intro">On raconte les chants: pour les apprendre, rien ne vaut le virage.</p>
         <div class="chants-liste">
           {%- for c in chants %}
           {%- assign c_air = c.air | default: "" %}
