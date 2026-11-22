@@ -22,4 +22,4 @@ Les textes et les photos publiés sur ce site appartiennent à leur auteur, sauf
 
 ## Données personnelles
 
-Ce site ne dépose aucun cookie de mesure d'audience. Les polices de caractères sont chargées depuis le service Google Fonts.
+Ce site ne dépose aucun cookie de mesure d'audience. Les polices de caractères sont hébergées sur ce site : votre visite ne transmet aucune donnée à Google.
