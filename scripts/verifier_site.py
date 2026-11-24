@@ -128,6 +128,19 @@ def main() -> int:
     if plan.is_file():
         print("Plan du site :", " ".join(re.findall(r"<loc>([^<]+)</loc>", texte(plan))))
 
+    # Aucune instruction de mise en page ne doit apparaître en clair sur le site.
+    fuites = re.compile(r"« include |\{%|%\}|\{\{|\}\}")
+    for f in sorted(SITE.rglob("*.html")):
+        corps = re.sub(r"<(script|style).*?</\1>", " ", texte(f), flags=re.S)
+        for m in fuites.finditer(corps):
+            extrait = corps[max(0, m.start() - 40):m.end() + 40].replace("\n", " ")
+            erreurs.append(f"Code visible sur {f.relative_to(SITE)} : …{extrait}…")
+            break
+    for f, motif in [("index.html", r'<span class="lb-score">([^<]*)</span>\s*<span class="lb-date">([^<]*)</span>'),
+                     ("epopee/index.html", r'<span class="episode-match">([^<]*)</span>')]:
+        if (SITE / f).is_file():
+            print(f"Scores sur {f} :", re.findall(motif, texte(SITE / f))[:3])
+
     for e in erreurs:
         print("ERREUR :", e)
     return 1 if erreurs else 0
