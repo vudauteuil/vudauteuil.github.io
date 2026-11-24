@@ -1,0 +1,44 @@
+{%- comment -%}
+  La liste des brèves, numérotées comme un quotidien.
+  - Sur l'accueil : « include section_breves.html limite=5 »
+    (les plus récentes, puis un lien vers la page des brèves)
+  - Sur la page /breves/ : « include section_breves.html complet="oui" »
+    (toutes les brèves)
+{%- endcomment -%}
+{%- assign sb_limite = include.limite | default: site.posts.size -%}
+{%- if include.complet -%}{%- assign sb_h = "h1" -%}{%- else -%}{%- assign sb_h = "h2" -%}{%- endif -%}
+<section id="breves" class="section section--papier{% if include.complet %} section--page{% endif %}" aria-labelledby="breves-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">Les archives</p>
+      <{{ sb_h }} id="breves-titre" class="section-titre">Les brèves</{{ sb_h }}>
+      <p class="section-intro">Chaque match raconté depuis les gradins, le soir même ou au réveil.</p>
+    </div>
+    <ol class="liste-breves">
+      {%- for b in site.posts limit: sb_limite %}
+      <li>
+        <a class="lb-lien" href="{{ b.url | relative_url }}">
+          <span class="lb-numero"><small>Brève</small>{{ site.posts.size | minus: forloop.index0 }}</span>
+          <span class="lb-match">
+            <span class="lb-score">« include score.html match=b »</span>
+            <span class="lb-date">« include date_fr.html date=b.date »</span>
+          </span>
+          <span class="lb-texte">
+            <span class="lb-titre">{{ b.title }}</span>
+            {%- if b.chapeau %}
+            <span class="lb-chapeau">{{ b.chapeau }}</span>
+            {%- endif %}
+          </span>
+          <span class="lb-lire">Lire →</span>
+        </a>
+      </li>
+      {%- endfor %}
+      {%- if site.posts.size <= sb_limite %}
+      <li class="lb-suite">La suite au prochain numéro.</li>
+      {%- endif %}
+    </ol>
+    {%- unless include.complet %}
+    <p class="page-suite"><a class="billet-lien" href="{{ '/breves/' | relative_url }}">Toutes les brèves →</a></p>
+    {%- endunless %}
+  </div>
+</section>

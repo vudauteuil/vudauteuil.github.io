@@ -1,0 +1,32 @@
+---
+layout: default
+title: Les chants du Virage Auteuil
+description: "Le carnet de chants du Virage Auteuil : d'où viennent les classiques de la tribune du Parc des Princes, sur quel air et quand on les chante."
+permalink: /chants/
+---
+{%- comment -%}
+  Cette page se remplit toute seule à partir du carnet de chants
+  (Pages CMS, menu « Les chants »). Chaque chant a sa propre adresse,
+  par exemple /chants/#o-ville-lumiere : on peut la mettre en lien
+  dans une brève.
+{%- endcomment -%}
+{%- assign liste_chants = site.data.chants.chants -%}
+<section id="chants" class="section section--blanc section--page" aria-labelledby="chants-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">Parler virage</p>
+      <h1 id="chants-titre" class="section-titre">Les chants</h1>
+      <p class="section-intro">D'où viennent les classiques de la tribune, sur quel air et quand on les chante.</p>
+    </div>
+    <p class="chants-intro">On raconte les chants : pour les apprendre, rien ne vaut le virage.</p>
+    {%- if liste_chants.size > 0 %}
+    {% include chants.html niveau=2 ancres="oui" %}
+    {%- else %}
+    <p class="chants-intro">Prochainement.</p>
+    {%- endif %}
+    <p class="page-suite">
+      <a class="billet-lien" href="{{ '/lexique/' | relative_url }}">Le lexique du virage, de A à Z →</a>
+      <a class="billet-lien" href="{{ '/premiere-fois-au-virage/' | relative_url }}">Première fois au virage ? Le guide →</a>
+    </p>
+  </div>
+</section>

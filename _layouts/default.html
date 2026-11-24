@@ -18,14 +18,20 @@
     <div class="conteneur manchette-logo">
       <a class="logo" href="{{ accueil }}" aria-label="{{ site.title }}, accueil">{% include logo.html %}</a>
     </div>
+    {%- comment -%}
+      Chaque rubrique du menu a sa propre page. La rubrique en cours est
+      soulignée en rouge (une brève compte comme « Les brèves »).
+    {%- endcomment -%}
+    {%- assign u = page.url -%}
     <nav class="manchette-nav" aria-label="Navigation principale">
       <ul>
-        <li><a href="{{ '/#breves' | relative_url }}">Les brèves</a></li>
-        <li><a href="{{ '/#epopee' | relative_url }}">L'épopée</a></li>
-        <li><a href="{{ '/barometre/' | relative_url }}">Le baromètre</a></li>
-        <li><a href="{{ '/#tifos' | relative_url }}">Les tifos</a></li>
-        <li><a href="{{ '/#parler-virage' | relative_url }}">Lexique et chants</a></li>
-        <li><a href="{{ '/premiere-fois-au-virage/' | relative_url }}">Première fois ?</a></li>
+        <li><a href="{{ '/breves/' | relative_url }}"{% if u == '/breves/' %} aria-current="page"{% elsif page.collection == 'posts' %} aria-current="true"{% endif %}>Les brèves</a></li>
+        <li><a href="{{ '/epopee/' | relative_url }}"{% if u == '/epopee/' %} aria-current="page"{% endif %}>L'épopée</a></li>
+        <li><a href="{{ '/barometre/' | relative_url }}"{% if u == '/barometre/' %} aria-current="page"{% endif %}>Le baromètre</a></li>
+        <li><a href="{{ '/tifos/' | relative_url }}"{% if u == '/tifos/' %} aria-current="page"{% endif %}>Les tifos</a></li>
+        <li><a href="{{ '/lexique/' | relative_url }}"{% if u == '/lexique/' %} aria-current="page"{% endif %}>Le lexique</a></li>
+        <li><a href="{{ '/chants/' | relative_url }}"{% if u == '/chants/' %} aria-current="page"{% endif %}>Les chants</a></li>
+        <li><a href="{{ '/premiere-fois-au-virage/' | relative_url }}"{% if u == '/premiere-fois-au-virage/' %} aria-current="page"{% endif %}>Première fois ?</a></li>
         {%- if nl != "" %}
         <li><a href="{{ nl }}">Newsletter</a></li>
         {%- endif %}
@@ -47,6 +53,7 @@
       <nav class="pied-nav" aria-label="Pied de page">
         <a href="{{ '/barometre/' | relative_url }}">Le baromètre</a>
         <a href="{{ '/lexique/' | relative_url }}">Le lexique</a>
+        <a href="{{ '/chants/' | relative_url }}">Les chants</a>
         <a href="{{ '/premiere-fois-au-virage/' | relative_url }}">Première fois au virage</a>
         <a href="{{ '/a-propos/' | relative_url }}">À propos</a>
         <a href="{{ '/charte/' | relative_url }}">Charte éditoriale</a>

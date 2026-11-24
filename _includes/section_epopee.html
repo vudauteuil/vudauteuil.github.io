@@ -1,0 +1,53 @@
+{%- comment -%}
+  L'épopée : un billet par compétition (Pages CMS, menu « L'épopée »).
+  - Sur l'accueil : « include section_epopee.html »
+    (chaque billet renvoie vers son dernier épisode)
+  - Sur la page /epopee/ : « include section_epopee.html complet="oui" »
+    (chaque billet liste tous ses épisodes, du premier au dernier)
+{%- endcomment -%}
+{%- if include.complet -%}
+  {%- assign se_h = "h1" -%}{%- assign se_hs = "h2" -%}
+{%- else -%}
+  {%- assign se_h = "h2" -%}{%- assign se_hs = "h3" -%}
+{%- endif -%}
+<section id="epopee" class="section section--blanc{% if include.complet %} section--page{% endif %}" aria-labelledby="epopee-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">Le feuilleton de la saison</p>
+      <{{ se_h }} id="epopee-titre" class="section-titre">L'épopée {{ site.data.epopee.saison }}</{{ se_h }}>
+      <p class="section-intro">{% if include.complet %}Un billet par compétition, et tous ses épisodes dans l'ordre.{% else %}Un billet par compétition.{% endif %}</p>
+    </div>
+    <div class="billets{% if include.complet %} billets--complet{% endif %}">
+      {%- for ch in site.data.epopee.chapitres %}
+      {%- assign episodes = site.posts | where: "competition", ch.competition %}
+      <article class="billet" id="{{ ch.competition | slugify }}">
+        <span class="billet-talon" aria-hidden="true">{{ ch.numero }}</span>
+        <div class="billet-corps">
+          <{{ se_hs }}>{{ ch.competition }}</{{ se_hs }}>
+          <p>{{ ch.statut }}</p>
+          {%- if episodes.size == 0 %}
+          <span class="billet-vide">Prochainement</span>
+          {%- elsif include.complet %}
+          <ol class="episodes">
+            {%- for e in episodes reversed %}
+            <li>
+              <a href="{{ e.url | relative_url }}">
+                <span class="episode-numero">Épisode {{ forloop.index }}</span>
+                <span class="episode-titre">{{ e.title }}</span>
+                <span class="episode-match">« include score.html match=e » · {% include date_fr.html date=e.date %}</span>
+              </a>
+            </li>
+            {%- endfor %}
+          </ol>
+          {%- else %}
+          <a class="billet-lien" href="{{ episodes.first.url | relative_url }}">Dernier épisode : {{ episodes.first.title }} →</a>
+          {%- endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+    {%- unless include.complet %}
+    <p class="page-suite"><a class="billet-lien" href="{{ '/epopee/' | relative_url }}">Toute l'épopée, épisode par épisode →</a></p>
+    {%- endunless %}
+  </div>
+</section>
