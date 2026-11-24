@@ -14,4 +14,4 @@ Un supporter indépendant, qui ne parle qu’en son nom. Ce blog n’a aucun lie
 
 **Écrire, suivre**
 
-Une remarque, une correction, une photo à proposer : [vudauteuil@proton.me](mailto:vudauteuil@proton.me). Les brèves sont aussi sur [Instagram](https://www.instagram.com/vudauteuil/).
+Une remarque, une correction, une photo à proposer : [contact@vudauteuil.fr](mailto:contact@vudauteuil.fr). Les brèves sont aussi sur [Instagram](https://www.instagram.com/vudauteuil/).
