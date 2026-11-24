@@ -1,0 +1,175 @@
+---
+layout: default
+title: Le baromètre de la saison
+description: "Les notes du Virage Auteuil match après match : la moyenne de la tribune et du terrain, la plus belle ambiance et le classement des hommes du soir."
+permalink: /barometre/
+---
+{%- comment -%}
+  Cette page se calcule toute seule à partir des brèves : notes de la
+  tribune et du terrain, homme du soir. Rien à remplir ici.
+  La saison suivie est celle de « L'épopée » (Pages CMS), par exemple
+  2026-2027 : du 1er juillet 2026 au 30 juin 2027.
+  Pour que le classement des hommes du soir soit juste, écris toujours
+  le nom de la même façon (ex. : « Senny Mayulu »).
+{%- endcomment -%}
+{%- assign saison = site.data.epopee.saison | default: "" -%}
+{%- assign annees = saison | split: "-" -%}
+{%- if annees.size == 2 -%}
+  {%- assign debut = annees[0] | strip | append: "-07-01" -%}
+  {%- assign fin = annees[1] | strip | append: "-07-01" -%}
+{%- else -%}
+  {%- assign debut = "0000-00-00" -%}
+  {%- assign fin = "9999-99-99" -%}
+{%- endif -%}
+{%- capture urls_saison -%}
+  {%- for p in site.posts -%}
+    {%- assign jour = p.date | date: "%Y-%m-%d" -%}
+    {%- if jour >= debut and jour < fin -%}|{{ p.url }}{%- endif -%}
+  {%- endfor -%}|
+{%- endcapture -%}
+{%- assign breves = site.posts | where_exp: "p", "urls_saison contains p.url" -%}
+{%- assign notees = breves | where_exp: "p", "p.note_tribune" -%}
+
+{%- comment -%} Moyennes {%- endcomment -%}
+{%- assign somme_tribune = 0 -%}
+{%- assign somme_terrain = 0 -%}
+{%- assign nb_terrain = 0 -%}
+{%- assign ecart_max = -100 -%}
+{%- assign soir_ecart = nil -%}
+{%- for m in notees -%}
+  {%- assign somme_tribune = somme_tribune | plus: m.note_tribune -%}
+  {%- if m.note_terrain -%}
+    {%- assign somme_terrain = somme_terrain | plus: m.note_terrain -%}
+    {%- assign nb_terrain = nb_terrain | plus: 1 -%}
+    {%- assign ecart = m.note_tribune | minus: m.note_terrain -%}
+    {%- if ecart > ecart_max -%}
+      {%- assign ecart_max = ecart -%}
+      {%- assign soir_ecart = m -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if notees.size > 0 -%}
+  {%- assign moy_tribune = somme_tribune | times: 1.0 | divided_by: notees.size | round: 1 -%}
+  {%- assign meilleure = notees | sort: "note_tribune" | reverse | first -%}
+{%- endif -%}
+{%- if nb_terrain > 0 -%}
+  {%- assign moy_terrain = somme_terrain | times: 1.0 | divided_by: nb_terrain | round: 1 -%}
+{%- endif -%}
+
+{%- comment -%} Bilan au Parc {%- endcomment -%}
+{%- assign victoires = 0 -%}{%- assign nuls = 0 -%}{%- assign defaites = 0 -%}
+{%- assign buts_pour = 0 -%}{%- assign buts_contre = 0 -%}
+{%- for b in breves -%}
+  {%- assign bp = b.buts_psg | plus: 0 -%}
+  {%- assign ba = b.buts_adversaire | plus: 0 -%}
+  {%- assign buts_pour = buts_pour | plus: bp -%}
+  {%- assign buts_contre = buts_contre | plus: ba -%}
+  {%- if bp > ba -%}{%- assign victoires = victoires | plus: 1 -%}
+  {%- elsif bp == ba -%}{%- assign nuls = nuls | plus: 1 -%}
+  {%- else -%}{%- assign defaites = defaites | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+
+{%- assign hommes = breves | where_exp: "p", "p.homme_du_soir" | group_by: "homme_du_soir" | sort: "size" | reverse -%}
+
+<article class="page page--large barometre">
+  <div class="conteneur">
+    <p class="etiquette page-etiquette">Saison {{ saison }}</p>
+    <h1 class="page-titre">Le baromètre</h1>
+    <p class="page-intro">Après chaque match, deux notes : celle de la tribune et celle du terrain. Voici ce que donne la saison, brève après brève.</p>
+
+    {%- if breves.size == 0 %}
+    <p class="barometre-vide">Le baromètre se remplira avec la première brève de la saison.</p>
+    {%- else %}
+
+    <section aria-labelledby="chiffres-titre">
+      <h2 id="chiffres-titre" class="barometre-titre">Les chiffres clés</h2>
+      <div class="chiffres-cles">
+        {%- if moy_tribune %}
+        <div class="chiffre-cle">
+          <span class="cc-label">Moyenne de la tribune</span>
+          <span class="cc-val rouge">{{ moy_tribune | append: "" | replace: ".0", "" | replace: ".", "," }}<small>/10</small></span>
+          <span class="cc-note">sur {{ notees.size }} match{% if notees.size > 1 %}s{% endif %}</span>
+        </div>
+        {%- endif %}
+        {%- if moy_terrain %}
+        <div class="chiffre-cle">
+          <span class="cc-label">Moyenne du terrain</span>
+          <span class="cc-val">{{ moy_terrain | append: "" | replace: ".0", "" | replace: ".", "," }}<small>/10</small></span>
+          <span class="cc-note">sur {{ nb_terrain }} match{% if nb_terrain > 1 %}s{% endif %}</span>
+        </div>
+        {%- endif %}
+        <div class="chiffre-cle">
+          <span class="cc-label">Bilan au Parc</span>
+          <span class="cc-val">{{ victoires }}V · {{ nuls }}N · {{ defaites }}D</span>
+          <span class="cc-note">{{ buts_pour }} but{% if buts_pour > 1 %}s{% endif %} marqué{% if buts_pour > 1 %}s{% endif %}, {{ buts_contre }} encaissé{% if buts_contre > 1 %}s{% endif %}</span>
+        </div>
+      </div>
+    </section>
+
+    {%- if meilleure or soir_ecart %}
+    <section aria-labelledby="soirs-titre">
+      <h2 id="soirs-titre" class="barometre-titre">Les soirs qui comptent</h2>
+      <div class="soirs">
+        {%- if meilleure %}
+        <a class="soir" href="{{ meilleure.url | relative_url }}">
+          <span class="cc-label">La plus belle ambiance</span>
+          <strong>{{ meilleure.title }}</strong>
+          <span class="soir-detail">{% if meilleure.domicile %}PSG {{ meilleure.buts_psg }}–{{ meilleure.buts_adversaire }} {{ meilleure.adversaire }}{% else %}{{ meilleure.adversaire }} {{ meilleure.buts_adversaire }}–{{ meilleure.buts_psg }} PSG{% endif %} · tribune {{ meilleure.note_tribune | append: "" | replace: ".", "," }}/10</span>
+        </a>
+        {%- endif %}
+        {%- if soir_ecart and ecart_max > 0 %}
+        <a class="soir" href="{{ soir_ecart.url | relative_url }}">
+          <span class="cc-label">Le soir où la tribune a sauvé le match</span>
+          <strong>{{ soir_ecart.title }}</strong>
+          <span class="soir-detail">Tribune {{ soir_ecart.note_tribune | append: "" | replace: ".", "," }}/10, terrain {{ soir_ecart.note_terrain | append: "" | replace: ".", "," }}/10</span>
+        </a>
+        {%- endif %}
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if hommes.size > 0 %}
+    <section aria-labelledby="hommes-titre">
+      <h2 id="hommes-titre" class="barometre-titre">Le classement des hommes du soir</h2>
+      <ol class="hommes">
+        {%- for h in hommes %}
+        <li>
+          <span class="homme-rang">{{ forloop.index }}</span>
+          <span class="homme-nom">{{ h.name }}</span>
+          <span class="homme-nb">{{ h.size }} fois</span>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+    {%- endif %}
+
+    <section aria-labelledby="matchs-titre">
+      <h2 id="matchs-titre" class="barometre-titre">Match par match</h2>
+      <div class="tableau-defilant" role="region" aria-labelledby="matchs-titre" tabindex="0">
+        <table class="table-matchs">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Match</th>
+              <th scope="col">Tribune</th>
+              <th scope="col">Terrain</th>
+              <th scope="col">L'homme du soir</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for b in breves %}
+            <tr>
+              <td>{% include date_fr.html date=b.date %}</td>
+              <td><a href="{{ b.url | relative_url }}">{% if b.domicile %}PSG {{ b.buts_psg }}–{{ b.buts_adversaire }} {{ b.adversaire }}{% else %}{{ b.adversaire }} {{ b.buts_adversaire }}–{{ b.buts_psg }} PSG{% endif %}</a><span class="table-compet">{{ b.competition }}</span></td>
+              <td class="table-note rouge">{% if b.note_tribune %}{{ b.note_tribune | append: "" | replace: ".", "," }}{% else %}–{% endif %}</td>
+              <td class="table-note">{% if b.note_terrain %}{{ b.note_terrain | append: "" | replace: ".", "," }}{% else %}–{% endif %}</td>
+              <td>{{ b.homme_du_soir | default: "–" }}</td>
+            </tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {%- endif %}
+  </div>
+</article>

@@ -1,0 +1,81 @@
+---
+layout: default
+title: Le lexique du virage
+description: "Tifo, capo, craquage, parcage, Poznań : les mots du Virage Auteuil expliqués de A à Z, pour ceux qui découvrent la tribune."
+permalink: /lexique/
+---
+{%- comment -%}
+  Cette page se remplit toute seule à partir du lexique (Pages CMS,
+  menu « Le lexique »). Chaque mot a sa propre adresse, par exemple
+  /lexique/#craquage : on peut la mettre en lien dans une brève.
+{%- endcomment -%}
+{%- comment -%} Les mots sont classés dans l'ordre du fichier, regroupés par lettre. {%- endcomment -%}
+{%- assign mots = site.data.lexique.mots -%}
+{%- assign alphabet = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: "," -%}
+{%- capture lettres -%}
+  {%- for e in mots -%}
+    {%- capture id_mot -%}{% include ancre.html mot=e.mot %}{%- endcapture -%}
+    {{- id_mot | slice: 0 | upcase -}}
+  {%- endfor -%}
+{%- endcapture -%}
+<article class="page page--large">
+  <div class="conteneur">
+    <p class="etiquette page-etiquette">Parler virage</p>
+    <h1 class="page-titre">Le lexique du virage</h1>
+    <p class="page-intro">Les mots de la tribune, de A à Z. Pour ceux qui découvrent le Virage Auteuil, et pour ceux qui n'ont jamais eu besoin qu'on les leur explique.</p>
+
+    <nav class="abecedaire" aria-label="Aller à une lettre">
+      {%- for l in alphabet -%}
+        {%- if lettres contains l %}
+      <a href="#lettre-{{ l | downcase }}">{{ l }}</a>
+        {%- else %}
+      <span aria-hidden="true">{{ l }}</span>
+        {%- endif -%}
+      {%- endfor %}
+    </nav>
+
+    {%- for l in alphabet -%}
+    {%- if lettres contains l %}
+    <section class="lettre" id="lettre-{{ l | downcase }}" aria-labelledby="titre-lettre-{{ l | downcase }}">
+      <h2 class="lettre-titre" id="titre-lettre-{{ l | downcase }}">{{ l }}</h2>
+      <dl class="lexique lexique--complet">
+        {%- for e in mots -%}
+          {%- capture id_mot -%}{% include ancre.html mot=e.mot %}{%- endcapture -%}
+          {%- assign initiale = id_mot | slice: 0 | upcase -%}
+          {%- if initiale == l %}
+        <div class="mot" id="{{ id_mot }}">
+          <dt><dfn>{{ e.mot }}</dfn></dt>
+          <dd>{{ e.definition }}</dd>
+        </div>
+          {%- endif -%}
+        {%- endfor %}
+      </dl>
+    </section>
+    {%- endif -%}
+    {%- endfor %}
+
+    <p class="page-suite">
+      <a class="billet-lien" href="{{ '/#parler-virage' | relative_url }}">Le carnet de chants →</a>
+      <a class="billet-lien" href="{{ '/premiere-fois-au-virage/' | relative_url }}">Première fois au virage ? Le guide →</a>
+    </p>
+  </div>
+</article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": {{ page.title | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "hasDefinedTerm": [
+    {%- for e in mots %}
+    {%- capture id_mot -%}{% include ancre.html mot=e.mot %}{%- endcapture %}
+    {
+      "@type": "DefinedTerm",
+      "name": {{ e.mot | jsonify }},
+      "description": {{ e.definition | jsonify }},
+      "url": {{ page.url | absolute_url | append: "#" | append: id_mot | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>

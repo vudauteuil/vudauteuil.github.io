@@ -47,8 +47,30 @@ layout: default
     </div>
 
     {% include note.html match=page %}
+    {%- if page.note_tribune or page.note_terrain or page.homme_du_soir %}
+    <p class="lien-barometre"><a href="{{ '/barometre/' | relative_url }}">Toutes les notes de la saison : le baromètre →</a></p>
+    {%- endif %}
 
     <p class="suite">La suite au prochain numéro.</p>
+
+    {%- assign s_insta = r.instagram | default: "" -%}
+    {%- assign s_x = r.x | default: "" -%}
+    {%- assign s_nl = r.newsletter_lien | default: "" %}
+    <aside class="suivre" aria-labelledby="suivre-titre">
+      <h2 id="suivre-titre">Ne ratez pas le prochain numéro</h2>
+      <div class="suivre-liens">
+        {%- if s_nl != "" %}
+        <a class="bouton bouton--rouge" href="{{ s_nl }}">La newsletter</a>
+        {%- endif %}
+        {%- if s_insta != "" %}
+        <a class="bouton" href="{{ s_insta }}" rel="me">Instagram</a>
+        {%- endif %}
+        {%- if s_x != "" %}
+        <a class="bouton" href="{{ s_x }}" rel="me">X</a>
+        {%- endif %}
+        <a class="bouton" href="{{ '/feed.xml' | relative_url }}">Flux RSS</a>
+      </div>
+    </aside>
 
     <div class="partage">
       <a class="retour" href="{{ '/#breves' | relative_url }}">← Toutes les brèves</a>

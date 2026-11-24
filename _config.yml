@@ -2,7 +2,10 @@
 # plutôt dans Pages CMS (menu « Réglages du site »).
 title: "Vu d'Auteuil"
 description: "Les matchs du PSG racontés depuis le virage, en brèves."
+url: "https://vudauteuil.fr"
+author: Désirus
 lang: fr
+locale: fr_FR
 timezone: Europe/Paris
 permalink: /breves/:year/:month/:day/:title/
 markdown: kramdown
@@ -10,8 +13,20 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 defaults:
+  - scope:
+      path: ""
+    values:
+      # Image affichée quand on partage une page du site.
+      # Chaque brève reçoit la sienne (score + note du virage) au moment
+      # de la mise en ligne : voir scripts/images_partage.py.
+      image:
+        path: /assets/partage/vu-dauteuil.png
+        width: 1200
+        height: 630
+        alt: "Vu d'Auteuil, brèves de tribune : les matchs du PSG racontés depuis le Virage Auteuil"
   - scope:
       path: ""
       type: posts
@@ -25,3 +40,5 @@ defaults:
 exclude:
   - LISEZMOI.md
   - pages-cms-config.txt
+  - scripts/
+  - .github/
