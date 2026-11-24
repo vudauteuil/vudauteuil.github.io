@@ -40,95 +40,15 @@ title: Accueil
 </section>
 {%- endif %}
 
-<section id="breves" class="section section--papier" aria-labelledby="breves-titre">
-  <div class="conteneur">
-    <div class="section-tete">
-      <p class="etiquette">Les archives</p>
-      <h2 id="breves-titre" class="section-titre">Les brèves</h2>
-      <p class="section-intro">Chaque match raconté depuis les gradins, le soir même ou au réveil.</p>
-    </div>
-    <ol class="liste-breves">
-      {%- for b in site.posts %}
-      <li>
-        <a class="lb-lien" href="{{ b.url | relative_url }}">
-          <span class="lb-numero"><small>Brève</small>{{ site.posts.size | minus: forloop.index0 }}</span>
-          <span class="lb-match">
-            <span class="lb-score">{% if b.domicile %}PSG {{ b.buts_psg }}–{{ b.buts_adversaire }} {{ b.adversaire }}{% else %}{{ b.adversaire }} {{ b.buts_adversaire }}–{{ b.buts_psg }} PSG{% endif %}</span>
-            <span class="lb-date">{% include date_fr.html date=b.date %}</span>
-          </span>
-          <span class="lb-texte">
-            <span class="lb-titre">{{ b.title }}</span>
-            {%- if b.chapeau %}
-            <span class="lb-chapeau">{{ b.chapeau }}</span>
-            {%- endif %}
-          </span>
-          <span class="lb-lire">Lire →</span>
-        </a>
-      </li>
-      {%- endfor %}
-      <li class="lb-suite">La suite au prochain numéro.</li>
-    </ol>
-  </div>
-</section>
+{%- comment -%}
+  Chaque rubrique a sa propre page (/breves/, /epopee/, /tifos/, /lexique/).
+  L'accueil n'en montre qu'un extrait, avec un lien vers la page complète.
+{%- endcomment %}
+{% include section_breves.html limite=5 %}
 
-<section id="epopee" class="section section--blanc" aria-labelledby="epopee-titre">
-  <div class="conteneur">
-    <div class="section-tete">
-      <p class="etiquette">Le feuilleton de la saison</p>
-      <h2 id="epopee-titre" class="section-titre">L'épopée {{ site.data.epopee.saison }}</h2>
-      <p class="section-intro">Un billet par compétition.</p>
-    </div>
-    <div class="billets">
-      {%- for ch in site.data.epopee.chapitres %}
-      {%- assign episodes = site.posts | where: "competition", ch.competition %}
-      <article class="billet">
-        <span class="billet-talon" aria-hidden="true">{{ ch.numero }}</span>
-        <div class="billet-corps">
-          <h3>{{ ch.competition }}</h3>
-          <p>{{ ch.statut }}</p>
-          {%- if episodes.size > 0 %}
-          <a class="billet-lien" href="{{ episodes.first.url | relative_url }}">Dernier épisode : {{ episodes.first.title }} →</a>
-          {%- else %}
-          <span class="billet-vide">Prochainement</span>
-          {%- endif %}
-        </div>
-      </article>
-      {%- endfor %}
-    </div>
-  </div>
-</section>
+{% include section_epopee.html %}
 
-{%- assign tifos = site.data.tifos.tifos %}
-<section id="tifos" class="section section--nuit" aria-labelledby="tifos-titre">
-  <div class="conteneur">
-    <div class="section-tete">
-      <p class="etiquette">La galerie</p>
-      <h2 id="tifos-titre" class="section-titre">Les tifos</h2>
-      <p class="section-intro">Les voiles, les bâches et les cartons de la saison, avec ce qu'ils racontaient.</p>
-    </div>
-    <div class="tifos">
-      {%- for t in tifos %}
-      {%- assign t_photo = t.photo | default: "" %}
-      <figure class="tifo">
-        {%- if t_photo != "" %}
-        <img src="{{ t_photo | relative_url }}" alt="{{ t.alt | default: t.titre | escape }}" loading="lazy" decoding="async">
-        {%- else %}
-        <div class="tifo-affiche" aria-hidden="true"><span>{{ t.affiche | default: t.titre }}</span></div>
-        {%- endif %}
-        <figcaption>
-          <span class="tifo-meta">{{ t.match }}{% if t.moment %} · {{ t.moment }}{% endif %}</span>
-          <h3>{{ t.titre }}</h3>
-          <p>{{ t.description }}</p>
-        </figcaption>
-      </figure>
-      {%- endfor %}
-      <div class="tifo tifo--appel">
-        <span class="tifo-meta">Prochain tifo</span>
-        <p>Prochainement.</p>
-      </div>
-    </div>
-  </div>
-</section>
+{% include section_tifos.html limite=3 %}
 
 <section id="parler-virage" class="section section--blanc" aria-labelledby="parler-titre">
   <div class="conteneur">
@@ -159,23 +79,11 @@ title: Accueil
       {%- if chants.size > 0 %}
       <div>
         <h3>Le carnet de chants</h3>
-        <p class="chants-intro">On raconte les chants: pour les apprendre, rien ne vaut le virage.</p>
-        <div class="chants-liste">
-          {%- for c in chants %}
-          {%- assign c_air = c.air | default: "" %}
-          {%- assign c_moment = c.moment | default: "" %}
-          <article class="chant">
-            <h4>{{ c.nom }}</h4>
-            {%- if c_air != "" %}
-            <p class="chant-meta"><span>Sur l'air de</span>{{ c_air }}</p>
-            {%- endif %}
-            {%- if c_moment != "" %}
-            <p class="chant-meta"><span>Quand</span>{{ c_moment }}</p>
-            {%- endif %}
-            <p class="chant-histoire">{{ c.histoire }}</p>
-          </article>
-          {%- endfor %}
-        </div>
+        <p class="chants-intro">On raconte les chants : pour les apprendre, rien ne vaut le virage.</p>
+        {% include chants.html niveau=4 limite=3 %}
+        <p class="parler-liens">
+          <a class="billet-lien" href="{{ '/lexique/#chants' | relative_url }}">Tout le carnet de chants →</a>
+        </p>
       </div>
       {%- endif %}
     </div>

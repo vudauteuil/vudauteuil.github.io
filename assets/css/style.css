@@ -64,7 +64,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 .manchette-nav { border-top: 1px solid var(--filet-nuit); }
 .manchette-nav ul { list-style: none; margin: 0 auto; padding: 0 32px; max-width: 1240px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 32px; }
 .manchette-nav a { display: inline-flex; align-items: center; min-height: 48px; color: var(--blanc); text-decoration: none; font-family: var(--etiquette); font-weight: 600; font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 3px solid transparent; }
-.manchette-nav a:hover { border-bottom-color: var(--rouge-vif); }
+.manchette-nav a:hover, .manchette-nav a[aria-current] { border-bottom-color: var(--rouge-vif); }
 .manchette--compacte .manchette-logo { padding-top: 18px; padding-bottom: 16px; }
 .manchette--compacte .manchette-logo .logo { font-size: clamp(36px, 5vw, 52px); }
 
@@ -128,7 +128,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 .billet { display: grid; grid-template-columns: 92px minmax(0, 1fr); background: var(--papier); border: 1px solid var(--filet); }
 .billet-talon { display: flex; align-items: center; justify-content: center; background: var(--nuit); color: var(--blanc); font-family: var(--titre); font-size: 44px; border-right: 2px dashed var(--filet); }
 .billet-corps { display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 20px; }
-.billet-corps h3 { margin: 0; font-family: var(--etiquette); font-weight: 700; font-size: 24px; letter-spacing: 0.06em; text-transform: uppercase; }
+.billet-corps h2, .billet-corps h3 { margin: 0; font-family: var(--etiquette); font-weight: 700; font-size: 24px; letter-spacing: 0.06em; text-transform: uppercase; }
 .billet-corps p { margin: 0; font-size: 18px; line-height: 1.5; }
 .billet-lien, .billet-vide { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--filet); display: inline-flex; align-items: center; min-height: 44px; font-family: var(--etiquette); font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
 .billet-lien { color: var(--rouge); text-decoration: none; }
@@ -161,7 +161,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 .tifo-affiche span { position: relative; font-family: var(--titre); font-size: clamp(64px, 9vw, 120px); line-height: 0.9; text-transform: uppercase; }
 .tifo figcaption { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 26px; }
 .tifo-meta { font-family: var(--etiquette); font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-clair); }
-.tifo h3 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 30px; line-height: 1.05; text-transform: uppercase; }
+.tifo h2, .tifo h3 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 30px; line-height: 1.05; text-transform: uppercase; }
 .tifo p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--texte-nuit); }
 .tifo--appel { align-items: flex-start; justify-content: center; gap: 12px; padding: 28px; border-style: dashed; background: transparent; }
 .tifo--appel p { color: var(--gris-clair); font-style: italic; }
@@ -177,7 +177,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 .chants-intro { margin: 0 0 20px; font-style: italic; font-size: 17px; color: var(--gris); }
 .chants-liste { display: flex; flex-direction: column; gap: 16px; }
 .chant { display: flex; flex-direction: column; gap: 6px; padding: 22px 24px; background: var(--nuit); color: var(--blanc); }
-.chant h4 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 28px; line-height: 1.05; text-transform: uppercase; }
+.chant h3, .chant h4 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 28px; line-height: 1.05; text-transform: uppercase; }
 .chant-meta { margin: 0; font-family: var(--etiquette); font-weight: 600; font-size: 17px; letter-spacing: 0.03em; }
 .chant-meta span { margin-right: 8px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-clair); }
 .chant-histoire { margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: var(--texte-nuit); }
@@ -355,4 +355,30 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
   .cc-val { font-size: 44px; }
   .suivre { padding: 24px 20px; }
   .lien-barometre { text-align: left; }
+}
+
+/* ---------- Pages de rubrique : brèves, épopée, tifos ---------- */
+/* Même mise en page que sur l'accueil, en version complète. */
+.section--page { padding: 56px 0 96px; }
+.section--nuit .billet-lien { color: var(--blanc); }
+.billets--complet { grid-template-columns: minmax(0, 1fr); }
+.episodes { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--filet); }
+.episodes li { border-bottom: 1px solid var(--filet); }
+.episodes a { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 4px 20px; align-items: baseline; padding: 14px 0; color: var(--encre); text-decoration: none; }
+.episode-numero { font-family: var(--etiquette); font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); }
+.episode-titre { font-family: var(--titre); font-size: 26px; line-height: 1.05; text-transform: uppercase; }
+.episode-match { font-family: var(--etiquette); font-weight: 600; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); }
+.episodes a:hover .episode-titre { color: var(--rouge); }
+
+/* ---------- Le carnet de chants, en bas du lexique ---------- */
+.abecedaire .abecedaire-chants { margin-left: auto; padding: 0 14px; background: var(--rouge); font-size: 20px; text-transform: uppercase; }
+.abecedaire .abecedaire-chants:hover { background: var(--nuit); }
+.carnet { margin-top: 56px; padding-top: 28px; border-top: 3px solid var(--encre); scroll-margin-top: 90px; }
+.carnet-titre { margin: 0 0 8px; font-family: var(--titre); font-weight: 400; font-size: clamp(40px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: var(--rouge); }
+.carnet .chants-liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+
+@media (max-width: 600px) {
+  .section--page { padding: 40px 0 64px; }
+  .episodes a { grid-template-columns: minmax(0, 1fr); }
+  .abecedaire .abecedaire-chants { margin-left: 0; }
 }

@@ -15,7 +15,7 @@ layout: default
     <nav class="ariane" aria-label="Fil d'Ariane">
       <a href="{{ '/' | relative_url }}">Accueil</a>
       <span aria-hidden="true">/</span>
-      <a href="{{ '/#breves' | relative_url }}">Les brèves</a>
+      <a href="{{ '/breves/' | relative_url }}">Les brèves</a>
     </nav>
 
     <header class="article-tete">
@@ -73,7 +73,7 @@ layout: default
     </aside>
 
     <div class="partage">
-      <a class="retour" href="{{ '/#breves' | relative_url }}">← Toutes les brèves</a>
+      <a class="retour" href="{{ '/breves/' | relative_url }}">← Toutes les brèves</a>
       <div class="partage-boutons">
         <span class="partage-label">Partager</span>
         <a class="bouton-contour" href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&amp;url={{ lien | url_encode }}" target="_blank" rel="noopener">X</a>

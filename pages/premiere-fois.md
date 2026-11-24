@@ -30,7 +30,7 @@ Le virage se remplit bien avant le coup d'envoi. Les chants montent, les bâches
 ## Les codes de la tribune
 
 - **Debout, tout le match.** Au virage, on ne s'assoit qu'à la mi-temps, et encore...
-- **On chante.** Personne ne connaît les paroles le premier soir. Écoutez, puis suivez : le capo lance, la tribune répond. Le [carnet de chants](/#parler-virage) vous dit d'où viennent les classiques.
+- **On chante.** Personne ne connaît les paroles le premier soir. Écoutez, puis suivez : le capo lance, la tribune répond. Le [carnet de chants](/lexique/#chants) vous dit d'où viennent les classiques.
 - **Le tifo.** Si une feuille ou un drapeau vous attend sur votre siège, c'est pour l'animation. Attendez le signal et suivez les consignes. Pendant le tifo, le téléphone reste dans la poche.
 - **Les bâches et les drapeaux des groupes.** On n'y touche pas.
 - **Les couleurs adverses.** Elles restent à la maison.
@@ -42,5 +42,5 @@ Un mot vous échappe ? Le [lexique du virage](/lexique/) explique tout, du capo 
 
 Le virage reste souvent pour saluer les joueurs : ne filez pas au coup de sifflet final. Ensuite, les abords du stade sont très chargés. La station Porte d'Auteuil, sur la ligne 10, permet souvent d'éviter la foule de Porte de Saint-Cloud.
 
-Et le lendemain, la brève du match vous attend [ici](/#breves).
+Et le lendemain, la brève du match vous attend [ici](/breves/).
 

@@ -1,0 +1,11 @@
+{%- comment -%}
+  Le score d'une brève, écrit du point de vue du stade :
+  « PSG 1–0 Troyes » au Parc, « Lens 0–2 PSG » à l'extérieur.
+  Utilisation : « include score.html match=breve »
+{%- endcomment -%}
+{%- assign sc_m = include.match -%}
+{%- if sc_m.domicile -%}
+PSG {{ sc_m.buts_psg }}–{{ sc_m.buts_adversaire }} {{ sc_m.adversaire }}
+{%- else -%}
+{{ sc_m.adversaire }} {{ sc_m.buts_adversaire }}–{{ sc_m.buts_psg }} PSG
+{%- endif -%}

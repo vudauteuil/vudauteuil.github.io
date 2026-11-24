@@ -67,19 +67,21 @@ Dans **Pages fixes** : complète **À propos** et **Mentions légales** (les pas
 
 **Modifier une brève** : ouvre-la dans la liste, change ce que tu veux, enregistre.
 
-**Mettre à jour l'épopée** : dans **L'épopée**, change la phrase de chaque chapitre (« Leader à la trêve… »). Le lien vers le dernier épisode se met à jour tout seul.
+**Mettre à jour l'épopée** : dans **L'épopée**, change la phrase de chaque chapitre (« Leader à la trêve… »). Le lien vers le dernier épisode se met à jour tout seul, et la page /epopee/ liste tous les épisodes de chaque compétition.
 
 **Ajouter un mot au lexique** : dans **Le lexique**, ajoute une ligne. Le mot apparaît sur la page /lexique/, à sa lettre. Coche « Afficher aussi sur l'accueil » pour le montrer en page d'accueil (huit mots au maximum).
 
 **Faire un lien vers le lexique dans une brève** : sélectionne le mot dans le texte, clique sur le bouton lien et colle l'adresse `/lexique/#` suivie du mot, en minuscules, sans accent et avec des tirets à la place des espaces. Exemples : `/lexique/#craquage`, `/lexique/#deplacement`, `/lexique/#douzieme-homme`.
 
+**Les pages du menu** : chaque rubrique a sa propre page : /breves/, /epopee/, /barometre/, /tifos/, /lexique/ (lexique et chants) et /premiere-fois-au-virage/. L'accueil n'en montre qu'un extrait, avec un lien vers la page complète. Tout se met à jour tout seul à partir de Pages CMS.
+
 **Le baromètre** (/barometre/) se calcule tout seul à partir des notes de chaque brève. Écris toujours le nom de l'homme du soir de la même façon, sinon il compte pour deux joueurs. La saison suivie est celle indiquée dans **L'épopée**.
 
 **Les images de partage** : quand on partage une brève sur WhatsApp, X ou Instagram, une image apparaît avec le titre, le score et la note du virage. Elle est fabriquée toute seule à chaque mise en ligne : tu n'as rien à faire. Si tu ajoutes une photo principale à la brève, elle sert de fond à l'image.
 
-**Ajouter un tifo** : dans **La galerie des tifos**, ajoute une fiche avec ta photo. Sans photo, le texte « affiché » apparaît en grand à la place.
+**Ajouter un tifo** : dans **La galerie des tifos**, ajoute une fiche avec ta photo. Sans photo, le texte « affiché » apparaît en grand à la place. La page /tifos/ montre toute la galerie ; l'accueil, les trois premiers tifos de la liste (change l'ordre en faisant glisser les fiches).
 
-**Ajouter un chant** : dans **Les chants**, ajoute une fiche (nom, air d'origine, quand on le chante, son histoire). Raconte le chant avec tes mots, sans recopier les paroles.
+**Ajouter un chant** : dans **Les chants**, ajoute une fiche (nom, air d'origine, quand on le chante, son histoire). Raconte le chant avec tes mots, sans recopier les paroles. Le carnet complet est en bas de la page /lexique/ ; l'accueil montre les trois premiers chants.
 
 **Photos** : remplis toujours le champ de description (ou la légende) : c'est ce que lisent les personnes malvoyantes et Google. Utilise tes propres photos, ou celles dont l'auteur t'a donné l'accord. Pas de captures d'écran de comptes Instagram ou X.
 

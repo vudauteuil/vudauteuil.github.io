@@ -1,0 +1,50 @@
+{%- comment -%}
+  La galerie des tifos (Pages CMS, menu « La galerie des tifos »).
+  Les tifos s'affichent dans l'ordre de la liste de Pages CMS.
+  - Sur l'accueil : « include section_tifos.html limite=3 »
+    (les premiers de la liste, puis un lien vers la galerie)
+  - Sur la page /tifos/ : « include section_tifos.html complet="oui" »
+    (toute la galerie)
+{%- endcomment -%}
+{%- assign st_tifos = site.data.tifos.tifos -%}
+{%- assign st_limite = include.limite | default: st_tifos.size -%}
+{%- if include.complet -%}
+  {%- assign st_h = "h1" -%}{%- assign st_hs = "h2" -%}
+{%- else -%}
+  {%- assign st_h = "h2" -%}{%- assign st_hs = "h3" -%}
+{%- endif -%}
+<section id="tifos" class="section section--nuit{% if include.complet %} section--page{% endif %}" aria-labelledby="tifos-titre">
+  <div class="conteneur">
+    <div class="section-tete">
+      <p class="etiquette">La galerie</p>
+      <{{ st_h }} id="tifos-titre" class="section-titre">Les tifos</{{ st_h }}>
+      <p class="section-intro">Les voiles, les bâches et les cartons de la saison, avec ce qu'ils racontaient.</p>
+    </div>
+    <div class="tifos">
+      {%- for t in st_tifos limit: st_limite %}
+      {%- assign t_photo = t.photo | default: "" %}
+      <figure class="tifo">
+        {%- if t_photo != "" %}
+        <img src="{{ t_photo | relative_url }}" alt="{{ t.alt | default: t.titre | escape }}" loading="lazy" decoding="async">
+        {%- else %}
+        <div class="tifo-affiche" aria-hidden="true"><span>{{ t.affiche | default: t.titre }}</span></div>
+        {%- endif %}
+        <figcaption>
+          <span class="tifo-meta">{{ t.match }}{% if t.moment %} · {{ t.moment }}{% endif %}</span>
+          <{{ st_hs }}>{{ t.titre }}</{{ st_hs }}>
+          <p>{{ t.description }}</p>
+        </figcaption>
+      </figure>
+      {%- endfor %}
+      {%- if st_tifos.size <= st_limite %}
+      <div class="tifo tifo--appel">
+        <span class="tifo-meta">Prochain tifo</span>
+        <p>Prochainement.</p>
+      </div>
+      {%- endif %}
+    </div>
+    {%- unless include.complet %}
+    <p class="page-suite"><a class="billet-lien" href="{{ '/tifos/' | relative_url }}">Toute la galerie →</a></p>
+    {%- endunless %}
+  </div>
+</section>

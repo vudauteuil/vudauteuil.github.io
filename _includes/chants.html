@@ -1,0 +1,25 @@
+{%- comment -%}
+  Le carnet de chants (Pages CMS, menu « Les chants »).
+  - Sur l'accueil : « include chants.html niveau=4 limite=3 »
+  - Sur la page /lexique/ : « include chants.html niveau=3 »
+  « niveau » est le niveau du titre de chaque chant (h3, h4…).
+{%- endcomment -%}
+{%- assign ch_liste = site.data.chants.chants -%}
+{%- assign ch_niveau = include.niveau | default: 4 -%}
+{%- assign ch_limite = include.limite | default: ch_liste.size -%}
+<div class="chants-liste">
+  {%- for c in ch_liste limit: ch_limite %}
+  {%- assign c_air = c.air | default: "" %}
+  {%- assign c_moment = c.moment | default: "" %}
+  <article class="chant">
+    <h{{ ch_niveau }}>{{ c.nom }}</h{{ ch_niveau }}>
+    {%- if c_air != "" %}
+    <p class="chant-meta"><span>Sur l'air de</span>{{ c_air }}</p>
+    {%- endif %}
+    {%- if c_moment != "" %}
+    <p class="chant-meta"><span>Quand</span>{{ c_moment }}</p>
+    {%- endif %}
+    <p class="chant-histoire">{{ c.histoire }}</p>
+  </article>
+  {%- endfor %}
+</div>
