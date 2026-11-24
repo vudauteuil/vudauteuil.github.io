@@ -41,7 +41,7 @@
         <li><a href="{{ '/tifos/' | relative_url }}"{% if u == '/tifos/' %} aria-current="page"{% endif %}>Les tifos</a></li>
         <li><a href="{{ '/lexique/' | relative_url }}"{% if u == '/lexique/' %} aria-current="page"{% endif %}>Le lexique</a></li>
         <li><a href="{{ '/chants/' | relative_url }}"{% if u == '/chants/' %} aria-current="page"{% endif %}>Les chants</a></li>
-        <li><a href="{{ '/premiere-fois-au-virage/' | relative_url }}"{% if u == '/premiere-fois-au-virage/' %} aria-current="page"{% endif %}>Première fois ?</a></li>
+        <li><a href="{{ '/premiere-fois-au-virage/' | relative_url }}"{% if u == '/premiere-fois-au-virage/' %} aria-current="page"{% endif %}>Première fois</a></li>
         {%- if nl != "" %}
         <li><a href="{{ nl }}">Newsletter</a></li>
         {%- endif %}
@@ -71,7 +71,7 @@
         <a href="{{ '/feed.xml' | relative_url }}">Flux RSS</a>
         {%- assign courriel = r.email_contact | default: "" -%}
         {%- if courriel != "" %}
-        <a href="mailto:{{ courriel }}">Écrire</a>
+        <a href="mailto:{{ courriel }}">Nous écrire</a>
         {%- endif %}
         {%- assign insta = r.instagram | default: "" -%}
         {%- if insta != "" %}
