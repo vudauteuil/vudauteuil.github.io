@@ -2,7 +2,7 @@
 #
 # À chaque enregistrement (depuis Pages CMS ou GitHub), GitHub :
 #   1. fabrique l'image de partage de chaque brève (score + note du virage) ;
-#   2. construit le site avec Jekyll, comme avant ;
+#   2. construit le site avec Jekyll, comme avant, puis le vérifie ;
 #   3. le met en ligne sur vudauteuil.fr.
 #
 # Réglage nécessaire, une seule fois : Settings > Pages > Build and deployment
@@ -53,17 +53,12 @@ jobs:
           source: ./
           destination: ./_site
 
+      - name: Vérifier le site construit
+        run: python scripts/verifier_site.py
+
       - name: Préparer la mise en ligne
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
-
-      - name: Garder un aperçu du site construit (propositions uniquement)
-        if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: apercu-du-site
-          path: _site
-          retention-days: 7
 
   mettre-en-ligne:
     name: Mettre en ligne
