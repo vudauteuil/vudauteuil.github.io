@@ -4,6 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  {%- comment -%}
+    L'icône du site (onglets, favoris, résultats Google) : « Vd'A »,
+    l'apostrophe en bande Hechter. Google lit l'icône PNG ou ICO
+    (il ne prend pas le SVG) : garder ces adresses stables.
+  {%- endcomment %}
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="48x48">
+  <link rel="icon" href="{{ '/assets/icones/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="icon" href="{{ '/assets/icones/favicon-192.png' | relative_url }}" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="{{ '/assets/icones/apple-touch-icon.png' | relative_url }}">
+  <meta name="theme-color" content="#0E1A33">
   <link rel="preload" href="{{ '/assets/fonts/anton-400.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   {% feed_meta %}

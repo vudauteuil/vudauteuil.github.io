@@ -83,6 +83,8 @@ Dans **Pages fixes** : complète **À propos** et **Mentions légales** (les pas
 
 **Ajouter un chant** : dans **Les chants**, ajoute une fiche (nom, air d'origine, quand on le chante, son histoire). Raconte le chant avec tes mots, sans recopier les paroles. Le carnet complet est sur la page /chants/ ; l'accueil montre les trois premiers chants. Chaque chant a sa propre adresse, comme les mots du lexique : `/chants/#o-ville-lumiere`, `/chants/#tous-ensemble-on-chantera`.
 
+**L'icône du site** (« Vd'A », l'apostrophe en bande Hechter) s'affiche dans les onglets, les favoris et les résultats Google. Ses fichiers sont `favicon.ico` et le dossier `assets/icones/` : n'en change pas les noms, Google les retient. Après un changement, Google met de quelques jours à quelques semaines à afficher la nouvelle icône.
+
 **Photos** : remplis toujours le champ de description (ou la légende) : c'est ce que lisent les personnes malvoyantes et Google. Utilise tes propres photos, ou celles dont l'auteur t'a donné l'accord. Pas de captures d'écran de comptes Instagram ou X.
 
 ---
