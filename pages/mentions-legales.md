@@ -13,8 +13,7 @@ Désirus
 
 ## Hébergeur
 
-GitHub, Inc. (service GitHub Pages)  
-88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis
+GitHub, Inc. (service GitHub Pages)
 
 ## Propriété intellectuelle
 
