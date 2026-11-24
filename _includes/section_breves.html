@@ -20,8 +20,8 @@
         <a class="lb-lien" href="{{ b.url | relative_url }}">
           <span class="lb-numero"><small>Brève</small>{{ site.posts.size | minus: forloop.index0 }}</span>
           <span class="lb-match">
-            <span class="lb-score">« include score.html match=b »</span>
-            <span class="lb-date">« include date_fr.html date=b.date »</span>
+            <span class="lb-score">{% include score.html match=b %}</span>
+            <span class="lb-date">{% include date_fr.html date=b.date %}</span>
           </span>
           <span class="lb-texte">
             <span class="lb-titre">{{ b.title }}</span>

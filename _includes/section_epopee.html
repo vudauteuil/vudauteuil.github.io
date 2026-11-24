@@ -34,7 +34,7 @@
               <a href="{{ e.url | relative_url }}">
                 <span class="episode-numero">Épisode {{ forloop.index }}</span>
                 <span class="episode-titre">{{ e.title }}</span>
-                <span class="episode-match">« include score.html match=e » · {% include date_fr.html date=e.date %}</span>
+                <span class="episode-match">{% include score.html match=e %} · {% include date_fr.html date=e.date %}</span>
               </a>
             </li>
             {%- endfor %}
