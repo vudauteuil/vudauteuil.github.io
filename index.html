@@ -111,7 +111,7 @@ title: Accueil
       {%- assign t_photo = t.photo | default: "" %}
       <figure class="tifo">
         {%- if t_photo != "" %}
-        <img src="{{ t_photo | relative_url }}" alt="{{ t.titre }}">
+        <img src="{{ t_photo | relative_url }}" alt="{{ t.alt | default: t.titre | escape }}" loading="lazy" decoding="async">
         {%- else %}
         <div class="tifo-affiche" aria-hidden="true"><span>{{ t.affiche | default: t.titre }}</span></div>
         {%- endif %}
@@ -140,14 +140,20 @@ title: Accueil
     <div class="parler">
       <div>
         <h3>Le lexique</h3>
+        {%- assign mots_accueil = site.data.lexique.mots | where: "accueil", true -%}
+        {%- if mots_accueil.size == 0 -%}{%- assign mots_accueil = site.data.lexique.mots -%}{%- endif %}
         <dl class="lexique">
-          {%- for e in site.data.lexique.mots %}
+          {%- for e in mots_accueil limit: 8 %}
           <div class="mot">
             <dt>{{ e.mot }}</dt>
             <dd>{{ e.definition }}</dd>
           </div>
           {%- endfor %}
         </dl>
+        <p class="parler-liens">
+          <a class="billet-lien" href="{{ '/lexique/' | relative_url }}">Tout le lexique, de A à Z →</a>
+          <a class="billet-lien" href="{{ '/premiere-fois-au-virage/' | relative_url }}">Première fois au virage ? Le guide →</a>
+        </p>
       </div>
       {%- assign chants = site.data.chants.chants %}
       {%- if chants.size > 0 %}

@@ -280,3 +280,79 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
   .voisin--suivant { grid-column: auto; }
   .pied-nav { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- Pages larges : lexique, baromètre ---------- */
+.page--large .conteneur { max-width: 1040px; }
+.page-etiquette { margin: 0 0 10px; color: var(--rouge); }
+.page-intro { margin: 0 0 36px; max-width: 52ch; font-size: 21px; line-height: 1.55; color: var(--gris); }
+.page-suite, .parler-liens { display: flex; flex-wrap: wrap; gap: 0 32px; margin: 40px 0 0; }
+.parler-liens { margin-top: 20px; }
+.page-suite .billet-lien, .parler-liens .billet-lien { border-top: 0; padding-top: 0; }
+
+/* ---------- Le lexique de A à Z ---------- */
+.abecedaire { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 40px; padding: 14px 0; border-top: 1px solid var(--filet); border-bottom: 1px solid var(--filet); position: sticky; top: 0; z-index: 2; background: var(--papier); }
+.abecedaire a, .abecedaire span { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; font-family: var(--titre); font-size: 22px; text-decoration: none; }
+.abecedaire a { background: var(--nuit); color: var(--blanc); }
+.abecedaire a:hover { background: var(--rouge); }
+.abecedaire span { color: var(--filet); }
+.lettre { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 0 24px; margin-bottom: 32px; scroll-margin-top: 90px; }
+.lettre-titre { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 72px; line-height: 1; color: var(--rouge); }
+.lexique--complet .mot { grid-template-columns: 240px minmax(0, 1fr); scroll-margin-top: 90px; }
+.lexique--complet .mot:target { background: var(--blanc); box-shadow: -12px 0 0 var(--blanc), 12px 0 0 var(--blanc), inset 4px 0 0 var(--rouge); }
+.lexique dfn { font-style: normal; }
+.corps a[href*="/lexique/"] { text-decoration-style: dotted; text-decoration-color: var(--rouge); text-underline-offset: 3px; }
+
+/* ---------- Le baromètre ---------- */
+.barometre-titre { margin: 48px 0 18px; font-family: var(--etiquette); font-weight: 700; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); }
+.barometre-vide { font-style: italic; font-size: 20px; color: var(--gris); }
+.chiffres-cles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.chiffre-cle { display: flex; flex-direction: column; gap: 6px; padding: 24px 26px; background: var(--nuit); color: var(--blanc); border-top: 4px solid var(--rouge); }
+.cc-label { font-family: var(--etiquette); font-weight: 600; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-clair); }
+.cc-val { font-family: var(--titre); font-size: 52px; line-height: 1; font-variant-numeric: tabular-nums; }
+.cc-val small { font-size: 0.5em; color: var(--gris-clair); margin-left: 2px; }
+.cc-val.rouge { color: var(--rouge-vif); }
+.cc-note { font-family: var(--etiquette); font-weight: 500; font-size: 16px; color: var(--gris-clair); }
+.soirs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.soir { display: flex; flex-direction: column; gap: 6px; padding: 22px 24px; background: var(--blanc); border: 1px solid var(--filet); color: var(--encre); text-decoration: none; }
+.soir .cc-label { color: var(--rouge); }
+.soir strong { font-family: var(--titre); font-weight: 400; font-size: 30px; line-height: 1.05; text-transform: uppercase; }
+.soir:hover strong { color: var(--rouge); }
+.soir-detail { font-family: var(--etiquette); font-weight: 600; font-size: 17px; color: var(--gris); }
+.hommes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filet); }
+.hommes li { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--filet); }
+.homme-rang { font-family: var(--titre); font-size: 34px; line-height: 1; color: var(--rouge); }
+.homme-nom { font-family: var(--titre); font-size: 26px; text-transform: uppercase; }
+.homme-nb { font-family: var(--etiquette); font-weight: 700; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gris); }
+.tableau-defilant { overflow-x: auto; border: 1px solid var(--filet); background: var(--blanc); }
+.tableau-defilant:focus-visible { outline: 3px solid #FFC845; outline-offset: 3px; }
+.table-matchs { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 17px; }
+.table-matchs th { padding: 12px 16px; text-align: left; background: var(--nuit); color: var(--blanc); font-family: var(--etiquette); font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+.table-matchs td { padding: 12px 16px; border-top: 1px solid var(--filet); vertical-align: top; }
+.table-matchs a { font-family: var(--etiquette); font-weight: 700; font-size: 18px; color: var(--encre); }
+.table-compet { display: block; font-family: var(--etiquette); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gris); }
+.table-note { font-family: var(--titre); font-size: 24px; font-variant-numeric: tabular-nums; }
+.table-note.rouge { color: var(--rouge); }
+
+/* ---------- Brève : baromètre et « suivre » ---------- */
+.lien-barometre { margin: 12px 0 0; text-align: right; font-family: var(--etiquette); font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+.lien-barometre a { color: var(--rouge); }
+.suivre { margin-top: 40px; padding: 28px 32px; background: var(--nuit); color: var(--blanc); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; border-top: 4px solid var(--rouge); }
+.suivre h2 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: 30px; line-height: 1.05; text-transform: uppercase; }
+.suivre-liens { display: flex; flex-wrap: wrap; gap: 10px; }
+.suivre .bouton { min-height: 48px; padding: 0 20px; font-size: 17px; background: var(--nuit-2); border: 1px solid var(--filet-nuit); }
+.suivre .bouton:hover { background: var(--rouge); }
+.suivre .bouton--rouge { background: var(--rouge); border-color: var(--rouge); }
+
+@media (max-width: 980px) {
+  .chiffres-cles { grid-template-columns: minmax(0, 1fr); }
+  .soirs { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .lettre { grid-template-columns: minmax(0, 1fr); }
+  .lettre-titre { font-size: 56px; }
+  .lexique--complet .mot { grid-template-columns: minmax(0, 1fr); }
+  .abecedaire a, .abecedaire span { min-width: 34px; min-height: 36px; font-size: 19px; }
+  .cc-val { font-size: 44px; }
+  .suivre { padding: 24px 20px; }
+  .lien-barometre { text-align: left; }
+}

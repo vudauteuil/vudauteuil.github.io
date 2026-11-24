@@ -11,3 +11,7 @@ Bienvenue dans les arcanes du virage, racontés par un supporter parmi des milli
 **Qui tient la plume ?**
 
 Un supporter indépendant, qui ne parle qu’en son nom. Ce blog n’a aucun lien avec le Paris Saint-Germain ni avec le Collectif Ultras Paris. Chaque brève raconte ce que son auteur a vu et ressenti depuis sa place : un regard de tribune, subjectif et assumé.
+
+**Écrire, suivre**
+
+Une remarque, une correction, une photo à proposer : [vudauteuil@proton.me](mailto:vudauteuil@proton.me). Les brèves sont aussi sur [Instagram](https://www.instagram.com/vudauteuil/).

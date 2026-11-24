@@ -79,6 +79,7 @@ content:
       - name: legende
         label: Légende de la photo
         type: string
+        description: "Sert aussi de description pour les personnes malvoyantes : dis ce qu'on voit."
       - name: note_tribune
         label: Note de la tribune (sur 10)
         type: number
@@ -121,6 +122,11 @@ content:
       - name: x
         label: Lien X
         type: string
+        description: "Laisse vide tant que tu n'as pas de compte X : le lien reste caché."
+      - name: email_contact
+        label: Adresse e-mail de contact
+        type: string
+        description: "Affichée en pied de page et sur la page À propos."
       - name: mention_independance
         label: Mention en pied de page
         type: text
@@ -168,6 +174,10 @@ content:
           - name: definition
             label: Définition
             type: text
+          - name: accueil
+            label: "Afficher aussi sur l'accueil"
+            type: boolean
+            description: "Le lexique complet est sur la page /lexique/. Coche les quelques mots à montrer en page d'accueil."
 
   - name: tifos
     label: La galerie des tifos
@@ -199,6 +209,10 @@ content:
             label: Photo
             type: image
             description: "Ta photo, prise depuis le virage."
+          - name: alt
+            label: Description de la photo
+            type: text
+            description: "Ce qu'on voit sur la photo, en une ou deux phrases. Lue par les personnes malvoyantes et par Google."
           - name: description
             label: Ce qu'il représentait
             type: text
@@ -245,6 +259,10 @@ content:
         label: Adresse de la page
         type: string
         description: "Ex. : /a-propos/ — à ne pas modifier sur les pages existantes."
+      - name: description
+        label: Résumé pour Google et les partages
+        type: text
+        description: "Une phrase qui décrit la page. Facultatif."
       - name: body
         label: Texte
         type: rich-text

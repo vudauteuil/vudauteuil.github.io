@@ -1,0 +1,5 @@
+# Images de partage des brèves : fabriquées sur GitHub à chaque mise en ligne
+assets/partage/20*.png
+_site/
+.jekyll-cache/
+__pycache__/

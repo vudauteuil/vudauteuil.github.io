@@ -1,0 +1,74 @@
+# Mise en ligne du site
+#
+# À chaque enregistrement (depuis Pages CMS ou GitHub), GitHub :
+#   1. fabrique l'image de partage de chaque brève (score + note du virage) ;
+#   2. construit le site avec Jekyll, comme avant, puis le vérifie ;
+#   3. le met en ligne sur vudauteuil.fr.
+#
+# Réglage nécessaire, une seule fois : Settings > Pages > Build and deployment
+# > Source : « GitHub Actions ».
+#
+# Sur une proposition de modification (pull request), le site est seulement
+# construit, pour vérifier qu'il n'y a pas d'erreur. Rien n'est mis en ligne.
+
+name: Mise en ligne du site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  construire:
+    name: Construire le site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer les fichiers
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les outils d'image
+        run: pip install pillow pyyaml fonttools brotli
+
+      - name: Fabriquer les images de partage
+        run: python scripts/images_partage.py --injecter
+
+      - name: Construire avec Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Vérifier le site construit
+        run: python scripts/verifier_site.py
+
+      - name: Préparer la mise en ligne
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+
+  mettre-en-ligne:
+    name: Mettre en ligne
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: construire
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - name: Publier sur GitHub Pages
+        id: deploiement
+        uses: actions/deploy-pages@v4
