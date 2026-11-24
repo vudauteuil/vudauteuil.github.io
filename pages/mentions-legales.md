@@ -5,7 +5,7 @@ permalink: /mentions-legales/
 ## Éditeur du site
 
 Désirus  
-Contact : [contact@vudauteuil.fr](mailto:vudauteuil@proton.me)
+Contact : [contact@vudauteuil.fr](mailto:contact@vudauteuil.fr)
 
 ## Directeur de la publication
 
