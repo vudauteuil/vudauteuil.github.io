@@ -26,6 +26,10 @@ ESSENTIELS = [
     "chants/index.html",
     "premiere-fois-au-virage/index.html",
     "assets/partage/vu-dauteuil.png",
+    "favicon.ico",
+    "assets/icones/favicon.svg",
+    "assets/icones/favicon-192.png",
+    "assets/icones/apple-touch-icon.png",
 ]
 MENU = [
     "/breves/",
@@ -75,6 +79,13 @@ def main() -> int:
     accueil = SITE / "index.html"
     if accueil.is_file():
         print(f"Accueil : {meta(texte(accueil), 'twitter:card')} · {meta(texte(accueil), 'og:image')}")
+        icones = re.findall(r'<link rel="(?:icon|apple-touch-icon)" href="([^"]+)"', texte(accueil))
+        print("Icônes déclarées :", " · ".join(icones))
+        for ic in icones:
+            if not (SITE / ic.lstrip("/")).is_file():
+                erreurs.append(f"Icône déclarée mais absente : {ic}")
+        if "/assets/icones/favicon-192.png" not in icones:
+            erreurs.append("L'icône PNG lue par Google n'est pas déclarée sur l'accueil")
     baro = SITE / "barometre" / "index.html"
     if baro.is_file():
         print("Baromètre :", visible(texte(baro), "<main", "</main>")[:900])
