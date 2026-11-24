@@ -101,6 +101,15 @@ def main() -> int:
         titre = re.search(r"<h1[^>]*>(.*?)</h1>", page, flags=re.S)
         print(f"Page {rubrique} :", html.unescape(re.sub(r"<[^>]+>", "", titre.group(1))).strip() if titre else "(sans titre)")
 
+    # L'accueil montre un extrait de chaque rubrique, avec un lien vers sa page.
+    if accueil.is_file():
+        corps = texte(accueil).split('id="contenu"', 1)[-1].split("</main>", 1)[0]
+        for rubrique in ["/breves/", "/epopee/", "/tifos/", "/lexique/", "/chants/"]:
+            if f'href="{rubrique}"' not in corps:
+                erreurs.append(f"L'accueil ne renvoie pas vers la page {rubrique}")
+        liens = re.findall(r'<a class="billet-lien" href="(/[a-z-]+/)">([^<]+)</a>', corps)
+        print("Accueil, liens vers les pages :", " · ".join(f"{html.unescape(t).strip()} ({u})" for u, t in liens))
+
     flux = SITE / "feed.xml"
     if flux.is_file():
         print("Flux RSS, auteur :", re.findall(r"<author>\s*<name>([^<]*)</name>", texte(flux))[:1])

@@ -60,14 +60,6 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
 
-      - name: Garder un aperçu du site construit (propositions uniquement)
-        if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: apercu-du-site
-          path: _site
-          retention-days: 7
-
   mettre-en-ligne:
     name: Mettre en ligne
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
