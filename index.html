@@ -41,7 +41,7 @@ title: Accueil
 {%- endif %}
 
 {%- comment -%}
-  Chaque rubrique a sa propre page (/breves/, /epopee/, /tifos/, /lexique/).
+  Chaque rubrique a sa propre page (/breves/, /epopee/, /tifos/, /lexique/, /chants/).
   L'accueil n'en montre qu'un extrait, avec un lien vers la page complète.
 {%- endcomment %}
 {% include section_breves.html limite=5 %}
@@ -82,7 +82,7 @@ title: Accueil
         <p class="chants-intro">On raconte les chants : pour les apprendre, rien ne vaut le virage.</p>
         {% include chants.html niveau=4 limite=3 %}
         <p class="parler-liens">
-          <a class="billet-lien" href="{{ '/lexique/#chants' | relative_url }}">Tout le carnet de chants →</a>
+          <a class="billet-lien" href="{{ '/chants/' | relative_url }}">Tout le carnet de chants →</a>
         </p>
       </div>
       {%- endif %}

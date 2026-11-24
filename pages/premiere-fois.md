@@ -30,7 +30,7 @@ Le virage se remplit bien avant le coup d'envoi. Les chants montent, les bâches
 ## Les codes de la tribune
 
 - **Debout, tout le match.** Au virage, on ne s'assoit qu'à la mi-temps, et encore...
-- **On chante.** Personne ne connaît les paroles le premier soir. Écoutez, puis suivez : le capo lance, la tribune répond. Le [carnet de chants](/lexique/#chants) vous dit d'où viennent les classiques.
+- **On chante.** Personne ne connaît les paroles le premier soir. Écoutez, puis suivez : le capo lance, la tribune répond. Le [carnet de chants](/chants/) vous dit d'où viennent les classiques.
 - **Le tifo.** Si une feuille ou un drapeau vous attend sur votre siège, c'est pour l'animation. Attendez le signal et suivez les consignes. Pendant le tifo, le téléphone reste dans la poche.
 - **Les bâches et les drapeaux des groupes.** On n'y touche pas.
 - **Les couleurs adverses.** Elles restent à la maison.

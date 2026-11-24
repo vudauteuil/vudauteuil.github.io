@@ -370,15 +370,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 .episode-match { font-family: var(--etiquette); font-weight: 600; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); }
 .episodes a:hover .episode-titre { color: var(--rouge); }
 
-/* ---------- Le carnet de chants, en bas du lexique ---------- */
-.abecedaire .abecedaire-chants { margin-left: auto; padding: 0 14px; background: var(--rouge); font-size: 20px; text-transform: uppercase; }
-.abecedaire .abecedaire-chants:hover { background: var(--nuit); }
-.carnet { margin-top: 56px; padding-top: 28px; border-top: 3px solid var(--encre); scroll-margin-top: 90px; }
-.carnet-titre { margin: 0 0 8px; font-family: var(--titre); font-weight: 400; font-size: clamp(40px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: var(--rouge); }
-.carnet .chants-liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+/* ---------- La page des chants ---------- */
+.chants-liste--grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 20px; }
+.chants-liste--grille .chant { scroll-margin-top: 24px; }
+.chants-liste--grille .chant:target { box-shadow: inset 4px 0 0 var(--rouge-vif); }
+.section--page .chants-intro { margin-bottom: 28px; }
 
 @media (max-width: 600px) {
   .section--page { padding: 40px 0 64px; }
   .episodes a { grid-template-columns: minmax(0, 1fr); }
-  .abecedaire .abecedaire-chants { margin-left: 0; }
 }

@@ -73,7 +73,7 @@ Dans **Pages fixes** : complète **À propos** et **Mentions légales** (les pas
 
 **Faire un lien vers le lexique dans une brève** : sélectionne le mot dans le texte, clique sur le bouton lien et colle l'adresse `/lexique/#` suivie du mot, en minuscules, sans accent et avec des tirets à la place des espaces. Exemples : `/lexique/#craquage`, `/lexique/#deplacement`, `/lexique/#douzieme-homme`.
 
-**Les pages du menu** : chaque rubrique a sa propre page : /breves/, /epopee/, /barometre/, /tifos/, /lexique/ (lexique et chants) et /premiere-fois-au-virage/. L'accueil n'en montre qu'un extrait, avec un lien vers la page complète. Tout se met à jour tout seul à partir de Pages CMS.
+**Les pages du menu** : chaque rubrique a sa propre page : /breves/, /epopee/, /barometre/, /tifos/, /lexique/, /chants/ et /premiere-fois-au-virage/. L'accueil n'en montre qu'un extrait, avec un lien vers la page complète. Tout se met à jour tout seul à partir de Pages CMS.
 
 **Le baromètre** (/barometre/) se calcule tout seul à partir des notes de chaque brève. Écris toujours le nom de l'homme du soir de la même façon, sinon il compte pour deux joueurs. La saison suivie est celle indiquée dans **L'épopée**.
 
@@ -81,7 +81,7 @@ Dans **Pages fixes** : complète **À propos** et **Mentions légales** (les pas
 
 **Ajouter un tifo** : dans **La galerie des tifos**, ajoute une fiche avec ta photo. Sans photo, le texte « affiché » apparaît en grand à la place. La page /tifos/ montre toute la galerie ; l'accueil, les trois premiers tifos de la liste (change l'ordre en faisant glisser les fiches).
 
-**Ajouter un chant** : dans **Les chants**, ajoute une fiche (nom, air d'origine, quand on le chante, son histoire). Raconte le chant avec tes mots, sans recopier les paroles. Le carnet complet est en bas de la page /lexique/ ; l'accueil montre les trois premiers chants.
+**Ajouter un chant** : dans **Les chants**, ajoute une fiche (nom, air d'origine, quand on le chante, son histoire). Raconte le chant avec tes mots, sans recopier les paroles. Le carnet complet est sur la page /chants/ ; l'accueil montre les trois premiers chants. Chaque chant a sa propre adresse, comme les mots du lexique : `/chants/#o-ville-lumiere`, `/chants/#tous-ensemble-on-chantera`.
 
 **Photos** : remplis toujours le champ de description (ou la légende) : c'est ce que lisent les personnes malvoyantes et Google. Utilise tes propres photos, ou celles dont l'auteur t'a donné l'accord. Pas de captures d'écran de comptes Instagram ou X.
 

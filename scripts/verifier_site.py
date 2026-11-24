@@ -23,8 +23,18 @@ ESSENTIELS = [
     "barometre/index.html",
     "tifos/index.html",
     "lexique/index.html",
+    "chants/index.html",
     "premiere-fois-au-virage/index.html",
     "assets/partage/vu-dauteuil.png",
+]
+MENU = [
+    "/breves/",
+    "/epopee/",
+    "/barometre/",
+    "/tifos/",
+    "/lexique/",
+    "/chants/",
+    "/premiere-fois-au-virage/",
 ]
 
 
@@ -72,6 +82,25 @@ def main() -> int:
     if lex.is_file():
         ancres = re.findall(r'<div class="mot" id="([^"]+)"', texte(lex))
         print(f"Lexique : {len(ancres)} mots ·", " ".join(ancres))
+    chants = SITE / "chants" / "index.html"
+    if chants.is_file():
+        ancres = re.findall(r'<article class="chant" id="([^"]+)"', texte(chants))
+        print(f"Chants : {len(ancres)} chants ·", " ".join(ancres))
+
+    # Le menu : chaque rubrique ouvre sa propre page, soulignée quand on y est.
+    for rubrique in MENU:
+        f = SITE / rubrique.strip("/") / "index.html"
+        if not f.is_file():
+            continue
+        page = texte(f)
+        nav = page.split('aria-label="Navigation principale"', 1)[-1].split("</nav>", 1)[0]
+        if re.search(r'href="[^"]*/#', nav):
+            erreurs.append(f"Le menu de {rubrique} renvoie encore vers l'accueil")
+        if not re.search(rf'href="{re.escape(rubrique)}" aria-current="page"', nav):
+            erreurs.append(f"La rubrique {rubrique} n'est pas soulignée sur sa propre page")
+        titre = re.search(r"<h1[^>]*>(.*?)</h1>", page, flags=re.S)
+        print(f"Page {rubrique} :", html.unescape(re.sub(r"<[^>]+>", "", titre.group(1))).strip() if titre else "(sans titre)")
+
     flux = SITE / "feed.xml"
     if flux.is_file():
         print("Flux RSS, auteur :", re.findall(r"<author>\s*<name>([^<]*)</name>", texte(flux))[:1])

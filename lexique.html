@@ -1,15 +1,13 @@
 ---
 layout: default
-title: Lexique et chants du virage
-description: "Tifo, capo, craquage, parcage, Poznań : les mots du Virage Auteuil expliqués de A à Z, et l'histoire des chants de la tribune, pour ceux qui découvrent le virage."
+title: Le lexique du virage
+description: "Tifo, capo, craquage, parcage, Poznań : les mots du Virage Auteuil expliqués de A à Z, pour ceux qui découvrent la tribune."
 permalink: /lexique/
 ---
 {%- comment -%}
   Cette page se remplit toute seule à partir du lexique (Pages CMS,
   menu « Le lexique »). Chaque mot a sa propre adresse, par exemple
   /lexique/#craquage : on peut la mettre en lien dans une brève.
-  Le carnet de chants (Pages CMS, menu « Les chants ») suit le lexique,
-  à l'adresse /lexique/#chants.
 {%- endcomment -%}
 {%- comment -%} Les mots sont classés dans l'ordre du fichier, regroupés par lettre. {%- endcomment -%}
 {%- assign mots = site.data.lexique.mots -%}
@@ -23,8 +21,8 @@ permalink: /lexique/
 <article class="page page--large">
   <div class="conteneur">
     <p class="etiquette page-etiquette">Parler virage</p>
-    <h1 class="page-titre">Lexique et chants</h1>
-    <p class="page-intro">Les mots de la tribune de A à Z, puis le carnet de chants. Pour ceux qui découvrent le Virage Auteuil, et pour ceux qui n'ont jamais eu besoin qu'on les leur explique.</p>
+    <h1 class="page-titre">Le lexique du virage</h1>
+    <p class="page-intro">Les mots de la tribune, de A à Z. Pour ceux qui découvrent le Virage Auteuil, et pour ceux qui n'ont jamais eu besoin qu'on les leur explique.</p>
 
     <nav class="abecedaire" aria-label="Aller à une lettre">
       {%- for l in alphabet -%}
@@ -34,9 +32,6 @@ permalink: /lexique/
       <span aria-hidden="true">{{ l }}</span>
         {%- endif -%}
       {%- endfor %}
-      {%- if site.data.chants.chants.size > 0 %}
-      <a class="abecedaire-chants" href="#chants">Les chants</a>
-      {%- endif %}
     </nav>
 
     {%- for l in alphabet -%}
@@ -59,17 +54,9 @@ permalink: /lexique/
     {%- endif -%}
     {%- endfor %}
 
-    {%- if site.data.chants.chants.size > 0 %}
-    <section class="carnet" id="chants" aria-labelledby="chants-titre">
-      <h2 class="carnet-titre" id="chants-titre">Le carnet de chants</h2>
-      <p class="chants-intro">On raconte les chants : pour les apprendre, rien ne vaut le virage.</p>
-      {% include chants.html niveau=3 %}
-    </section>
-    {%- endif %}
-
     <p class="page-suite">
+      <a class="billet-lien" href="{{ '/chants/' | relative_url }}">Le carnet de chants →</a>
       <a class="billet-lien" href="{{ '/premiere-fois-au-virage/' | relative_url }}">Première fois au virage ? Le guide →</a>
-      <a class="billet-lien" href="{{ '/barometre/' | relative_url }}">Le baromètre de la saison →</a>
     </p>
   </div>
 </article>
@@ -77,7 +64,7 @@ permalink: /lexique/
 {
   "@context": "https://schema.org",
   "@type": "DefinedTermSet",
-  "name": "Le lexique du virage",
+  "name": {{ page.title | jsonify }},
   "url": {{ page.url | absolute_url | jsonify }},
   "hasDefinedTerm": [
     {%- for e in mots %}
