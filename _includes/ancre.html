@@ -4,5 +4,5 @@
 {%- endcomment -%}
 {%- assign ancre_tmp = include.mot | downcase | replace: "à", "a" | replace: "â", "a" | replace: "ä", "a" | replace: "é", "e" | replace: "è", "e" | replace: "ê", "e" | replace: "ë", "e" -%}
 {%- assign ancre_tmp = ancre_tmp | replace: "î", "i" | replace: "ï", "i" | replace: "ô", "o" | replace: "ö", "o" | replace: "ù", "u" | replace: "û", "u" | replace: "ü", "u" | replace: "ç", "c" -%}
-{%- assign ancre_tmp = ancre_tmp | replace: "ń", "n" | replace: "œ", "oe" | replace: "’", "-" | replace: "'", "-" -%}
+{%- assign ancre_tmp = ancre_tmp | replace: "ń", "n" | replace: "ñ", "n" | replace: "á", "a" | replace: "í", "i" | replace: "ó", "o" | replace: "ú", "u" | replace: "œ", "oe" | replace: "’", "-" | replace: "'", "-" -%}
 {{- ancre_tmp | slugify -}}
