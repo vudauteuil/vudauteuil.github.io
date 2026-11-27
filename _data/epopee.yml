@@ -1,11 +1,9 @@
-saison: "2026-2027"
+saison: 2026-2027
 chapitres:
-  - numero: "I"
-    competition: "Ligue 1"
-    statut: "Leader à la trêve, trois points devant le Paris FC. Onze victoires de rang, toutes compétitions confondues."
-  - numero: "II"
-    competition: "Ligue des champions"
-    statut: "Dernier fait d'armes : une démonstration à Villarreal, 6-0."
-  - numero: "III"
-    competition: "Coupe de France"
-    statut: "Entrée en lice à venir."
+  - numero: I
+    competition: Ligue 1
+  - numero: II
+    competition: Ligue des champions
+  - numero: III
+    competition: Coupe de France
+    statut: Entrée en lice à venir.
