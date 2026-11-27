@@ -2,7 +2,7 @@
 title: Première fois au Virage Auteuil
 permalink: /premiere-fois-au-virage/
 description: "Accès, portes, horaires et codes de la tribune : le guide pour une
-  première fois au Virage Auteuil, au Parc des Princes."
+  première fois au Virage Auteuil."
 ---
 Vous avez une place pour le Virage Auteuil et vous n'y avez jamais mis les pieds ? Bienvenue. Voici ce qu'il faut savoir:
 
@@ -35,7 +35,7 @@ Le virage se remplit bien avant le coup d'envoi. Les chants montent, les bâches
 - **Les bâches et les drapeaux des groupes.** On n'y touche pas.
 - **Les couleurs adverses.** Elles restent à la maison.
 - **Vos voisins.** On ne filme pas leurs visages : en tribune, chacun a droit à sa tranquillité.
-- **L'écharpe.** L'indispensable vestimentaire.
+- **L'écharpe.** L'accessoire indispensable.
 
 Un mot vous échappe ? Le [lexique du virage](/lexique/) explique tout, du capo au parcage.
 
