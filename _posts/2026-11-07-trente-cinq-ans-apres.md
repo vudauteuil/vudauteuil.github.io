@@ -13,7 +13,7 @@ stade: Parc des Princes
 chapeau: Le Virage Auteuil fêtait ses trente-cinq ans. Le terrain a apporté le
   gâteau sans les bougies ; la tribune, elle, a fourni le feu d'artifice.
 photo: /assets/images/35ansAuteuil.jpg
-legende: La voile géante des 35 ans du Virage Auteuil, pendant PSG-Troyes.
+legende: La voile géante des 35 ans du Virage Auteuil.
 note_tribune: 10
 note_terrain: 5
 homme_du_soir: Senny Mayulu
