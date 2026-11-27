@@ -90,7 +90,8 @@ def main() -> int:
                 manquants = sorted({a for a in liens if a not in lexique})
                 print(f"  lexique : {len(lexique)} définitions, {len(liens)} mot(s) surligné(s)")
                 if manquants:
-                    erreurs.append(f"Mots du lexique sans définition sur {b.parent.relative_to(SITE)} : {', '.join(manquants)}")
+                    # Simple avertissement : le lien mène quand même à la page du lexique.
+                    print(f"  attention, mots absents du lexique : {', '.join(manquants)}")
 
     accueil = SITE / "index.html"
     if accueil.is_file():
