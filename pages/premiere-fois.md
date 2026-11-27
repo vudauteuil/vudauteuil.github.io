@@ -35,6 +35,7 @@ Le virage se remplit bien avant le coup d'envoi. Les chants montent, les bâches
 - **Les bâches et les drapeaux des groupes.** On n'y touche pas.
 - **Les couleurs adverses.** Elles restent à la maison.
 - **Vos voisins.** On ne filme pas leurs visages : en tribune, chacun a droit à sa tranquillité.
+- **L'écharpe.** L'indispensable vestimentaire.
 
 Un mot vous échappe ? Le [lexique du virage](/lexique/) explique tout, du capo au parcage.
 
