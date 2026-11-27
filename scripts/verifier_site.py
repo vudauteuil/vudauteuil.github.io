@@ -8,6 +8,7 @@ s'arrête et le site en ligne reste tel qu'il était.
 from __future__ import annotations
 
 import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -75,6 +76,21 @@ def main() -> int:
             nom = image.split("/assets/partage/", 1)[1]
             if not (SITE / "assets" / "partage" / nom).is_file():
                 erreurs.append(f"Image de partage introuvable : {nom}")
+        # Les définitions du lexique, pour la bulle des mots surlignés.
+        donnees = re.search(r'<script type="application/json" id="lexique-donnees">(.*?)</script>', page, flags=re.S)
+        if not donnees:
+            erreurs.append(f"Définitions du lexique absentes de {b.parent.relative_to(SITE)}")
+        else:
+            try:
+                lexique = json.loads(donnees.group(1))
+            except ValueError as e:
+                erreurs.append(f"Définitions du lexique illisibles sur {b.parent.relative_to(SITE)} : {e}")
+            else:
+                liens = re.findall(r'href="/lexique/#([^"]+)"', page.split('class="corps"', 1)[-1])
+                manquants = sorted({a for a in liens if a not in lexique})
+                print(f"  lexique : {len(lexique)} définitions, {len(liens)} mot(s) surligné(s)")
+                if manquants:
+                    erreurs.append(f"Mots du lexique sans définition sur {b.parent.relative_to(SITE)} : {', '.join(manquants)}")
 
     accueil = SITE / "index.html"
     if accueil.is_file():
