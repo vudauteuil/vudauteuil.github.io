@@ -1,5 +1,6 @@
 chants:
   - nom: Tous ensemble on chantera
+    air: Vuoto a perdere de Noemi
     moment: Les grands soirs, et surtout pour fêter une victoire.
     histoire: "Né en tribune Auteuil vers 2016, il est devenu l'hymne officieux du
       club. "
@@ -10,4 +11,5 @@ chants:
     histoire: Repris par les ultras parisiens dans les années 90.
   - nom: Cette chanson capitale
     air: Milord d'Edith Piaf
+    moment: Pour unir le Virage Auteuil
     histoire: Un classique du virage... intergénérationnel
