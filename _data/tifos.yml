@@ -4,12 +4,16 @@ tifos:
     match: PSG 2-2 AS Rome
     moment: Avant-match
     photo: /assets/images/tifo-gladiateurs-tribune-paris.jpg
-    alt: "Le Virage Auteuil vu depuis la tribune Paris, avant PSG-Rome. Sur une voile géante qui imite le mur d'une arène, deux gladiateurs : à droite, celui de Paris, debout, doré, casque à cimier bleu blanc rouge, lance au poing et bouclier fleurdelisé ; à gauche, celui de Rome, un genou à terre devant lui. Autour, une marée de drapeaux rouges et des drapeaux aux couleurs du PSG accrochés au mur."
+    alt: "Le Virage Auteuil vu depuis la tribune Paris, avant PSG-Rome. Sur une
+      voile géante qui imite le mur d'une arène, deux gladiateurs : à droite,
+      celui de Paris, debout, doré, casque à cimier bleu blanc rouge, lance au
+      poing et bouclier fleurdelisé ; à gauche, celui de Rome, un genou à terre
+      devant lui. Autour, une marée de drapeaux rouges et des drapeaux aux
+      couleurs du PSG accrochés au mur."
     description: >-
-      Pour recevoir la Roma, Auteuil a sorti deux gladiateurs géants : celui
-      de Paris debout, lance au poing et bouclier fleurdelisé, celui de Rome
-      incliné devant lui. Sous leurs pieds, une mer de drapeaux, bleus en
-      Auteuil Bleu, rouges en Auteuil Rouge.
+      Pour recevoir la Roma, Auteuil a sorti deux gladiateurs géants : celui de
+      Paris debout, lance au poing et bouclier fleurdelisé, celui de Rome
+      incliné devant lui. Sous leurs pieds, une mer de drapeaux.
 
       Merci à ma source en tribune Paris.
   - titre: Les 35 ans du virage
@@ -17,7 +21,10 @@ tifos:
     match: PSG 1-0 Troyes
     moment: Première période
     photo: /assets/images/35ansAuteuil.jpg
-    alt: "Le Virage Auteuil couvert par une voile géante pour les 35 ans de la tribune : un grand 35 gris taillé comme dans la pierre, entouré de lauriers et des dates 1991 et 2026, au milieu des torches et de la fumée orange. Au-dessus, la bannière « Fiers de nos couleurs »."
+    alt: "Le Virage Auteuil couvert par une voile géante pour les 35 ans de la
+      tribune : un grand 35 gris taillé comme dans la pierre, entouré de
+      lauriers et des dates 1991 et 2026, au milieu des torches et de la fumée
+      orange. Au-dessus, la bannière « Fiers de nos couleurs »."
     description: >-
       Une voile géante sur tout le virage : un 35 monumental taillé comme dans
       la pierre, des rubans bleu, blanc, rouge et une couronne de torches pour
