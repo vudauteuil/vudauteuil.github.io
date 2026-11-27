@@ -8,9 +8,11 @@ adversaire: AS Rome
 domicile: true
 buts_psg: 2
 buts_adversaire: 2
-buteurs: Mario Hermoso (5e), Illia Zabarnyi (32e), Ousmane Dembélé (62e, sp), Donyell Malen (78e, sp)
+buteurs: Mario Hermoso (5e), Illia Zabarnyi (32e), Ousmane Dembélé (62e, sp),
+  Donyell Malen (78e, sp)
 stade: Parc des Princes
-chapeau: "Désiré en tribune, des gladiateurs au-dessus du virage : Paris a mené, a poussé jusqu'au bout, et Rome s'en tire grâce à la VAR."
+chapeau: "Désiré en tribune, des gladiateurs au-dessus du virage : Paris a mené,
+  a poussé jusqu'au bout, et Rome s'en tire grâce à la VAR."
 photo: /assets/images/tifo-gladiateurs-psg-rome.jpg
 legende: Les gladiateurs du Virage Auteuil, avant le coup d'envoi de PSG-Rome.
 note_tribune: 8
@@ -31,7 +33,7 @@ Paris s'en est sorti grâce à sa doctrine européenne : le corner. Centre de Ma
 
 Après la pause, Safonov a livré son dossier complet en cinq minutes : une sortie aux poings hasardeuse, un arrêt de grande classe devant Pisilli, puis une relance à haut risque. C'est le profil idéal pour les missions où il faut surprendre tout le monde, son camp compris. Hakimi a ensuite arraché un penalty. Dembélé, entré pour une petite demi-heure afin d'être ménagé, l'a transformé (62e). Le Parc a cru l'affaire classée.
 
-Elle ne l'était pas. Entré à la 67e, Malen a débordé, et le ballon a fini sur la main de Vitinha. Commence alors ce que le football moderne fait de mieux : attendre. *Veni, vidi, VAR* : ils sont venus, ils ont vu, revu, surrevu, les yeux rivés sur un écran, loin du Parc, jusqu'à trouver ce qu'ils cherchaient. Entre la main et le but, plus de quatre minutes : un conclave aurait été plus rapide. Fumée blanche, *habemus penalty*, et Malen a égalisé (78e). En bon platinicien, l'auteur de ces lignes n'a jamais signé pour ce football au ralenti, où il faut attendre la permission d'un écran pour avoir le droit de crier. Ami lecteur, face à Rome, il faut toujours se méfier des conclaves.
+Elle ne l'était pas. Entré à la 67e, Malen a débordé, et le ballon a fini sur la main de Vitinha. Commence alors ce que le football moderne fait de mieux : attendre. *Veni, vidi, VAR* : ils sont venus, ils ont vu, revu, surrevu, les yeux rivés sur un écran, loin du Parc, jusqu'à trouver ce qu'ils cherchaient. Entre la main et le but, plus de quatre minutes : un conclave aurait été plus rapide. Fumée blanche, *habemus penalty*, et Malen a égalisé (78e), malgré une tribune scandant le nom de Safonov. En bon platinicien, l'auteur de ces lignes n'a jamais signé pour ce football au ralenti, où il faut attendre la permission d'un écran pour avoir le droit de crier.
 
 En fin de match, Ruiz, Hakimi puis Dembélé ont tenté de forcer le coffre. Il est resté fermé.
 
