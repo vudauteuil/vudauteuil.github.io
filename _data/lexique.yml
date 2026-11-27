@@ -1,4 +1,12 @@
 mots:
+  - mot: Auteuil Bleu
+    definition: La partie haute du Virage Auteuil. Son nom vient de la couleur
+      historique de ses sièges.
+    accueil: false
+  - mot: Auteuil Rouge
+    definition: La partie basse du virage, au plus près de la pelouse. Son nom
+      vient, lui aussi, de la couleur historique de ses sièges.
+    accueil: false
   - mot: Bâche
     definition: La banderole d'un groupe ou d'un message, accrochée aux grilles du virage.
     accueil: true
