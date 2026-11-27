@@ -3,13 +3,15 @@ tifos:
     affiche: Gladiateurs
     match: PSG 2-2 AS Rome
     moment: Avant-match
-    photo: /assets/images/tifo-gladiateurs-psg-rome.jpg
-    alt: "Deux gladiateurs géants dressés dans le Virage Auteuil, au-dessus d'une mer de drapeaux bleus. À gauche, le gladiateur de Paris, debout, lance au poing et bouclier fleurdelisé. À droite, le gladiateur de Rome, incliné devant lui. Au fond, la pelouse du Parc des Princes, les flammes et les faisceaux de lumière de l'avant-match."
+    photo: /assets/images/tifo-gladiateurs-tribune-paris.jpg
+    alt: "Le Virage Auteuil vu depuis la tribune Paris, avant PSG-Rome. Sur une voile géante qui imite le mur d'une arène, deux gladiateurs : à droite, celui de Paris, debout, doré, casque à cimier bleu blanc rouge, lance au poing et bouclier fleurdelisé ; à gauche, celui de Rome, un genou à terre devant lui. Autour, une marée de drapeaux rouges et des drapeaux aux couleurs du PSG accrochés au mur."
     description: >-
       Pour recevoir la Roma, Auteuil a sorti deux gladiateurs géants : celui
       de Paris debout, lance au poing et bouclier fleurdelisé, celui de Rome
       incliné devant lui. Sous leurs pieds, une mer de drapeaux, bleus en
       Auteuil Bleu, rouges en Auteuil Rouge.
+
+      Merci à ma source en tribune Paris.
   - titre: Les 35 ans du virage
     affiche: 35 ans
     match: PSG 1-0 Troyes
