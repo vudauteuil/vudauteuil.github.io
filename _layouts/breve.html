@@ -95,6 +95,92 @@ layout: default
 
   </div>
 </article>
+{%- comment -%}
+  Les définitions du lexique (_data/lexique.yml), pour la bulle qui s'ouvre
+  quand on touche un mot surligné dans la brève.
+{%- endcomment -%}
+{%- capture lex_json -%}
+{ {%- for m in site.data.lexique.mots -%}
+{%- capture lex_ancre -%}{% include ancre.html mot=m.mot %}{%- endcapture -%}
+{{ lex_ancre | strip | jsonify }}: { "mot": {{ m.mot | jsonify }}, "definition": {{ m.definition | strip | jsonify }} }{% unless forloop.last %},{% endunless %}
+{%- endfor -%} }
+{%- endcapture %}
+<script type="application/json" id="lexique-donnees">{{ lex_json }}</script>
+<script>
+  (function () {
+    var source = document.getElementById('lexique-donnees');
+    if (!source) return;
+    var lexique;
+    try { lexique = JSON.parse(source.textContent); } catch (e) { return; }
+    var bulle = null;
+    var ouvert = null;
+
+    function fermer() {
+      if (bulle) { bulle.parentNode.removeChild(bulle); bulle = null; }
+      if (ouvert) { ouvert.setAttribute('aria-expanded', 'false'); ouvert = null; }
+    }
+
+    function placer(lien) {
+      var r = lien.getBoundingClientRect();
+      var marge = 12;
+      var largeur = bulle.offsetWidth;
+      var hauteur = bulle.offsetHeight;
+      var gauche = r.left + r.width / 2 - largeur / 2;
+      gauche = Math.max(marge, Math.min(gauche, document.documentElement.clientWidth - largeur - marge));
+      var haut = r.bottom + 10;
+      if (haut + hauteur > window.innerHeight - marge && r.top - hauteur - 10 > marge) haut = r.top - hauteur - 10;
+      bulle.style.left = (gauche + window.pageXOffset) + 'px';
+      bulle.style.top = (haut + window.pageYOffset) + 'px';
+    }
+
+    function ouvrir(lien, entree) {
+      fermer();
+      bulle = document.createElement('div');
+      bulle.className = 'bulle-lexique';
+      bulle.setAttribute('role', 'dialog');
+      bulle.setAttribute('aria-label', 'Lexique : ' + entree.mot);
+      var mot = document.createElement('p');
+      mot.className = 'bulle-mot';
+      mot.textContent = entree.mot;
+      var definition = document.createElement('p');
+      definition.className = 'bulle-definition';
+      definition.textContent = entree.definition;
+      var suite = document.createElement('a');
+      suite.className = 'bulle-suite';
+      suite.href = lien.href;
+      suite.textContent = 'Tout le lexique →';
+      bulle.appendChild(mot);
+      bulle.appendChild(definition);
+      bulle.appendChild(suite);
+      document.body.appendChild(bulle);
+      placer(lien);
+      lien.setAttribute('aria-expanded', 'true');
+      ouvert = lien;
+    }
+
+    document.querySelectorAll('.corps a[href*="/lexique/#"]').forEach(function (lien) {
+      var entree = lexique[decodeURIComponent(lien.hash.slice(1))];
+      if (!entree) return;
+      lien.setAttribute('aria-haspopup', 'dialog');
+      lien.setAttribute('aria-expanded', 'false');
+      lien.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (ouvert === lien) { fermer(); return; }
+        ouvrir(lien, entree);
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!bulle) return;
+      if (bulle.contains(e.target) || (ouvert && ouvert.contains(e.target))) return;
+      fermer();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && ouvert) { var lien = ouvert; fermer(); lien.focus(); }
+    });
+    window.addEventListener('resize', fermer);
+  })();
+</script>
 <script>
   document.querySelectorAll('[data-copier]').forEach(function (bouton) {
     bouton.addEventListener('click', function () {

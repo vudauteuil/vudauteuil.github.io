@@ -300,7 +300,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
 .lexique--complet .mot { grid-template-columns: 240px minmax(0, 1fr); scroll-margin-top: 90px; }
 .lexique--complet .mot:target { background: var(--blanc); box-shadow: -12px 0 0 var(--blanc), 12px 0 0 var(--blanc), inset 4px 0 0 var(--rouge); }
 .lexique dfn { font-style: normal; }
-.corps a[href*="/lexique/"] { text-decoration-style: dotted; text-decoration-color: var(--rouge); text-underline-offset: 3px; }
+/* Les mots du lexique dans les brèves : surlignés au feutre, sans soulignement.
+   Un clic ouvre une bulle avec la définition (script dans _layouts/breve.html). */
+.corps a[href*="/lexique/"] { text-decoration: none; background-image: linear-gradient(transparent 34%, rgba(200, 16, 46, 0.14) 34%, rgba(200, 16, 46, 0.14) 88%, transparent 88%); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 2px; margin: 0 -2px; cursor: help; transition: background-image 0.15s; }
+.corps a[href*="/lexique/"]:hover, .corps a[href*="/lexique/"][aria-expanded="true"] { background-image: linear-gradient(transparent 34%, rgba(200, 16, 46, 0.26) 34%, rgba(200, 16, 46, 0.26) 88%, transparent 88%); }
+.corps a[href*="/lexique/"]:focus-visible { outline: 2px solid var(--rouge); outline-offset: 2px; }
+.bulle-lexique { position: absolute; z-index: 50; width: min(320px, calc(100vw - 24px)); margin: 0; padding: 16px 18px 14px; background: var(--nuit); color: var(--texte-nuit); border-top: 4px solid var(--rouge); box-shadow: 0 14px 36px rgba(10, 20, 40, 0.35); font-family: var(--texte); font-size: 17px; line-height: 1.45; }
+.bulle-lexique .bulle-mot { margin: 0 0 6px; font-family: var(--etiquette); font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blanc); }
+.bulle-lexique .bulle-definition { margin: 0 0 12px; }
+.bulle-lexique .bulle-suite { font-family: var(--etiquette); font-weight: 600; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris-nuit); text-decoration: none; }
+.bulle-lexique .bulle-suite:hover { color: var(--blanc); }
 
 /* ---------- Le baromètre ---------- */
 .barometre-titre { margin: 48px 0 18px; font-family: var(--etiquette); font-weight: 700; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); }

@@ -11,7 +11,7 @@ buts_adversaire: 2
 buteurs: Mario Hermoso (5e), Illia Zabarnyi (32e), Ousmane Dembélé (62e, sp), Donyell Malen (78e, sp)
 stade: Parc des Princes
 chapeau: "Désiré en tribune, des gladiateurs au-dessus du virage : Paris a mené, a poussé jusqu'au bout, et Rome s'en tire grâce à la VAR."
-photo: /assets/images/gladiateurs-psg-rome.jpg
+photo: /assets/images/tifo-gladiateurs-psg-rome.jpg
 legende: Les gladiateurs du Virage Auteuil, avant le coup d'envoi de PSG-Rome.
 note_tribune: 8
 note_terrain: 5
