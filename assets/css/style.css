@@ -389,3 +389,146 @@ a:focus-visible, button:focus-visible { outline: 3px solid #FFC845; outline-offs
   .section--page { padding: 40px 0 64px; }
   .episodes a { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- Le jeu « Plus ou moins » ----------
+   Deux cartes face à face, et les chiffres révélés sur le tableau
+   d'affichage du stade. Vert pour juste, rouge pour faux. */
+.pom { --pom-vert: #1E7F53; --pom-jaune: #FFD34D; max-width: 680px; display: flex; flex-direction: column; gap: 22px; }
+.pom [hidden] { display: none !important; }
+.pom-barre { display: flex; justify-content: flex-end; min-height: 0; margin-top: -12px; }
+.pom-chip { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 3px; border: 2px solid var(--nuit); font-family: var(--etiquette); font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--nuit); }
+.pom-chip::before { content: ""; width: 8px; height: 8px; background: var(--rouge); }
+.pom-jeu, .pom-fin, .pom-vide { display: flex; flex-direction: column; gap: 18px; }
+
+/* Progression : dix cases */
+.pom-progression { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+.pom-pas { height: 6px; background: var(--filet); }
+.pom-pas--ici { background: var(--nuit); }
+.pom-pas--juste { background: var(--pom-vert); }
+.pom-pas--juste.pom-pas--sur { box-shadow: 0 0 0 2px var(--pom-jaune); }
+.pom-pas--faux { background: var(--gris-clair); }
+.pom-pas--faux.pom-pas--sur { background: var(--rouge); }
+
+/* En-tête du duel */
+.pom-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--etiquette); font-weight: 700; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; }
+.pom-etiquettes { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
+.pom-categorie { color: var(--rouge); }
+.pom-marque { padding: 3px 8px 2px; background: var(--nuit); color: var(--blanc); font-size: 13px; }
+.pom-marque--piege { background: var(--rouge); }
+.pom-compteur { color: var(--gris); font-variant-numeric: tabular-nums; text-align: right; }
+.pom-question { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(32px, 6vw, 46px); line-height: 1.02; text-transform: uppercase; color: var(--nuit); }
+
+/* « Je suis sûr » */
+.pom-sur { appearance: none; align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 6px 18px 6px 8px; background: var(--blanc); color: var(--nuit); border: 2px solid var(--nuit); border-radius: 999px; font: inherit; text-align: left; cursor: pointer; }
+.pom-interrupteur { position: relative; flex: none; width: 38px; height: 22px; border-radius: 999px; background: var(--filet); transition: background 0.15s; }
+.pom-interrupteur::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--blanc); border: 1.5px solid var(--nuit); box-sizing: border-box; transition: transform 0.15s; }
+.pom-sur-texte { font-family: var(--etiquette); font-weight: 700; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; }
+.pom-sur-detail { margin-left: 8px; font-size: 15px; color: var(--gris); }
+.pom-sur[aria-pressed="true"] { background: var(--nuit); color: var(--blanc); }
+.pom-sur[aria-pressed="true"] .pom-interrupteur { background: var(--pom-jaune); }
+.pom-sur[aria-pressed="true"] .pom-interrupteur::after { transform: translateX(16px); }
+.pom-sur[aria-pressed="true"] .pom-sur-detail { color: var(--gris-nuit); }
+.pom-sur:disabled { cursor: default; opacity: 0.55; }
+
+/* Les deux cartes */
+.pom-arene { display: grid; grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr); align-items: stretch; gap: 10px; }
+.pom-cote { appearance: none; position: relative; display: flex; flex-direction: column; gap: 4px; min-height: 220px; padding: 18px 14px 14px; background: var(--blanc); color: var(--encre); border: 2px solid var(--nuit); border-top-width: 6px; font: inherit; text-align: left; cursor: pointer; transition: border-color 0.12s, transform 0.12s, opacity 0.2s; }
+.pom-cote:hover:not(:disabled) { border-color: var(--rouge); transform: translateY(-2px); }
+.pom-cote:active:not(:disabled) { transform: translateY(1px); }
+.pom-arene--mise .pom-cote:not(:disabled) { border-top-color: var(--pom-jaune); }
+.pom-cote:disabled { cursor: default; }
+.pom-cote--gagne { border-color: var(--pom-vert); }
+.pom-cote--perd { opacity: 0.6; }
+.pom-nom { font-family: var(--etiquette); font-weight: 700; font-size: 21px; line-height: 1.1; letter-spacing: 0.02em; text-transform: uppercase; overflow-wrap: anywhere; }
+.pom-precision { font-size: 16px; line-height: 1.35; color: var(--gris); }
+.pom-espace { flex: 1; min-height: 12px; }
+.pom-unite { min-height: 1.3em; font-family: var(--etiquette); font-weight: 600; font-size: 14px; line-height: 1.3; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); }
+.pom-vs { align-self: center; display: grid; place-items: center; width: 40px; height: 40px; background: var(--rouge); color: var(--blanc); font-family: var(--titre); font-size: 17px; }
+.pom-tampon { position: absolute; top: -18px; right: -8px; padding: 4px 9px 3px; background: var(--papier); border: 3px solid currentColor; font-family: var(--titre); font-size: 20px; line-height: 1; text-transform: uppercase; transform: rotate(7deg); }
+.pom-tampon--juste { color: var(--pom-vert); }
+.pom-tampon--faux { color: var(--rouge); }
+.pom-tampon--nul { color: var(--gris); }
+
+/* Le tableau d'affichage */
+.pom-tableau { display: flex; align-items: center; gap: 3px; min-height: 48px; padding: 6px; background: var(--nuit-fonce); border: 1px solid var(--filet-nuit); overflow: hidden; }
+.pom-case { position: relative; min-width: 0.62em; padding: 0.12em 0.06em 0.06em; background: linear-gradient(var(--nuit-2) 0 50%, var(--nuit) 50% 100%); color: var(--pom-jaune); font-family: var(--titre); font-size: clamp(24px, 6.4vw, 32px); line-height: 1; text-align: center; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.pom-case::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, 0.5); }
+.pom-case--vide, .pom-case--signe { min-width: 0.24em; padding-left: 0; padding-right: 0; background: none; }
+.pom-case--vide::after, .pom-case--signe::after { display: none; }
+.pom-case--attente { color: rgba(255, 211, 77, 0.35); }
+.pom-case--bascule { animation: pom-bascule 0.09s ease-in; }
+@keyframes pom-bascule { from { transform: rotateX(75deg); } to { transform: rotateX(0); } }
+.pom-tableau--long .pom-case { font-size: clamp(19px, 4.8vw, 26px); }
+.pom-tableau--tres-long .pom-case { font-size: clamp(15px, 3.8vw, 21px); }
+
+/* Le verdict */
+.pom-verdict { display: flex; flex-direction: column; gap: 10px; min-height: 120px; padding-top: 16px; border-top: 3px solid var(--encre); }
+.pom-verdict-titre { margin: 0; font-family: var(--etiquette); font-weight: 700; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase; }
+.pom-juste { color: var(--pom-vert); }
+.pom-faux { color: var(--rouge); }
+.pom-nul { color: var(--gris); }
+.pom-anecdote { margin: 0; font-size: 19px; line-height: 1.55; }
+.pom-source { margin: 0; font-family: var(--etiquette); font-weight: 500; font-size: 15px; letter-spacing: 0.04em; color: var(--gris); }
+.pom-source a { color: inherit; }
+.pom-aide { margin: 0; font-size: 18px; line-height: 1.5; color: var(--gris); }
+.pom-clavier { margin: 0; font-family: var(--etiquette); font-weight: 500; font-size: 15px; color: var(--gris); }
+.pom-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.pom button.bouton { border: 0; cursor: pointer; text-align: left; }
+.pom-bouton--clair { background: transparent; color: var(--nuit); box-shadow: inset 0 0 0 2px var(--nuit); }
+.pom-bouton--clair:hover { background: var(--nuit); color: var(--blanc); }
+
+/* Fin de partie */
+.pom-score-bloc { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 22px 16px 24px; background: var(--nuit); border-top: 4px solid var(--rouge); }
+.pom-score-libelle { font-family: var(--etiquette); font-weight: 600; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris-clair); }
+.pom-tableau--score { min-height: 0; padding: 0; background: none; border: 0; gap: 5px; }
+.pom-tableau--score .pom-case, .pom-tableau--score.pom-tableau--long .pom-case { font-size: clamp(54px, 15vw, 76px); padding: 0.1em 0.08em 0.04em; }
+.pom-carres { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.pom-carre { width: 20px; height: 20px; }
+.pom-carre--juste { background: var(--pom-vert); }
+.pom-carre--juste.pom-carre--sur { box-shadow: inset 0 0 0 3px var(--pom-jaune); }
+.pom-carre--faux { background: var(--gris); }
+.pom-carre--faux.pom-carre--sur { background: var(--rouge); }
+.pom-note { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(30px, 5vw, 40px); line-height: 1.05; text-transform: uppercase; color: var(--nuit); }
+.pom-fin-sous { margin: -8px 0 0; font-family: var(--etiquette); font-weight: 700; font-size: 18px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); }
+.pom-copie { font-family: var(--etiquette); font-weight: 600; font-size: 16px; color: var(--pom-vert); }
+.pom-secours { display: flex; flex-direction: column; gap: 6px; font-size: 16px; color: var(--gris); }
+.pom-secours textarea { width: 100%; min-height: 110px; padding: 10px; background: var(--blanc); color: var(--encre); border: 2px solid var(--nuit); font: 15px/1.4 var(--etiquette); resize: vertical; }
+.pom-prochaine { margin: 0; font-family: var(--etiquette); font-weight: 600; font-size: 17px; letter-spacing: 0.04em; color: var(--gris); }
+.pom-sous-titre { margin: 8px 0 0; font-family: var(--etiquette); font-weight: 700; font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); }
+.pom-recap { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filet); }
+.pom-recap li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--filet); }
+.pom-pastille { display: grid; place-items: center; width: 24px; height: 24px; margin-top: 2px; color: var(--blanc); font-size: 14px; font-weight: 700; }
+.pom-pastille--juste { background: var(--pom-vert); }
+.pom-pastille--juste.pom-pastille--sur { box-shadow: 0 0 0 2px var(--pom-jaune); }
+.pom-pastille--faux { background: var(--gris); }
+.pom-pastille--faux.pom-pastille--sur { background: var(--rouge); }
+.pom-recap-question { margin: 0 0 3px; font-family: var(--etiquette); font-weight: 500; font-size: 15px; line-height: 1.35; letter-spacing: 0.02em; color: var(--gris); }
+.pom-recap-reponse { margin: 0; font-size: 18px; line-height: 1.4; }
+.pom-recap-points { font-family: var(--titre); font-size: 22px; font-variant-numeric: tabular-nums; }
+
+/* Parties précédentes et règles */
+.pom-archives { display: flex; flex-direction: column; gap: 12px; }
+.pom-archives-liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filet); }
+.pom-archive { appearance: none; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 16px; align-items: baseline; width: 100%; min-height: 52px; padding: 12px 0; background: none; border: 0; border-bottom: 1px solid var(--filet); color: var(--encre); font: inherit; text-align: left; cursor: pointer; }
+.pom-archive:hover .pom-archive-numero { color: var(--rouge); }
+.pom-archive-numero { font-family: var(--titre); font-size: 24px; text-transform: uppercase; color: var(--nuit); }
+.pom-archive-date { font-family: var(--etiquette); font-weight: 500; font-size: 16px; color: var(--gris); }
+.pom-archive-etat { font-family: var(--etiquette); font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rouge); }
+.pom-regles { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--filet); font-size: 16px; line-height: 1.5; color: var(--gris); }
+.pom-regles p { margin: 0; }
+.pom-lien { appearance: none; align-self: flex-start; padding: 0; background: none; border: 0; color: var(--nuit); font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+
+@media (max-width: 600px) {
+  .pom-arene { grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr); gap: 6px; }
+  .pom-vs { width: 30px; height: 30px; font-size: 14px; }
+  .pom-cote { min-height: 200px; padding: 14px 10px 10px; }
+  .pom-nom { font-size: 18px; }
+  .pom-precision { font-size: 14px; }
+  .pom-unite { font-size: 12px; }
+  .pom-sur-detail { display: block; margin-left: 0; font-size: 14px; }
+  .pom-tete { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pom-case--bascule { animation: none; }
+  .pom-cote, .pom-interrupteur, .pom-interrupteur::after { transition: none; }
+}

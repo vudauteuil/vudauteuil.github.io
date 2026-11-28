@@ -73,7 +73,7 @@ Dans **Pages fixes** : complète **À propos** et **Mentions légales** (les pas
 
 **Faire un lien vers le lexique dans une brève** : sélectionne le mot dans le texte, clique sur le bouton lien et colle l'adresse `/lexique/#` suivie du mot, en minuscules, sans accent et avec des tirets à la place des espaces. Exemples : `/lexique/#craquage`, `/lexique/#deplacement`, `/lexique/#douzieme-homme`.
 
-**Les pages du menu** : chaque rubrique a sa propre page : /breves/, /epopee/, /barometre/, /tifos/, /lexique/, /chants/ et /premiere-fois-au-virage/. L'accueil n'en montre qu'un extrait, avec un lien vers la page complète. Tout se met à jour tout seul à partir de Pages CMS.
+**Les pages du menu** : chaque rubrique a sa propre page : /breves/, /epopee/, /barometre/, /tifos/, /lexique/, /chants/, /premiere-fois-au-virage/ et /plus-ou-moins/. L'accueil n'en montre qu'un extrait, avec un lien vers la page complète. Tout se met à jour tout seul à partir de Pages CMS.
 
 **Le baromètre** (/barometre/) se calcule tout seul à partir des notes de chaque brève. Écris toujours le nom de l'homme du soir de la même façon, sinon il compte pour deux joueurs. La saison suivie est celle indiquée dans **L'épopée**.
 
@@ -82,6 +82,16 @@ Dans **Pages fixes** : complète **À propos** et **Mentions légales** (les pas
 **Ajouter un tifo** : dans **La galerie des tifos**, ajoute une fiche avec ta photo. Sans photo, le texte « affiché » apparaît en grand à la place. La page /tifos/ montre toute la galerie ; l'accueil, les trois premiers tifos de la liste (change l'ordre en faisant glisser les fiches).
 
 **Ajouter un chant** : dans **Les chants**, ajoute une fiche (nom, air d'origine, quand on le chante, son histoire). Raconte le chant avec tes mots, sans recopier les paroles. Le carnet complet est sur la page /chants/ ; l'accueil montre les trois premiers chants. Chaque chant a sa propre adresse, comme les mots du lexique : `/chants/#o-ville-lumiere`, `/chants/#tous-ensemble-on-chantera`.
+
+**Le jeu Plus ou moins** (/plus-ou-moins/) : dans **Le jeu : Plus ou moins**, chaque fiche est une partie de 10 duels, avec sa date de mise en ligne. La partie s'ouvre toute seule ce jour-là, la même pour tout le monde ; les anciennes restent jouables en bas de la page. Pour chaque duel :
+
+- **Qui gagne ?** : « plus grand » si le plus grand nombre l'emporte, « plus petit » pour le plus petit nombre ou la date la plus ancienne.
+- **Valeur** : un nombre (`200`, `836,1`) ou une date au format `1982-05-15`. Les deux valeurs doivent être différentes, sinon il n'y a pas de gagnant et la mise en ligne s'arrête avec un message qui dit quel duel corriger.
+- **Texte affiché** (facultatif) : ce que voit le joueur à la place de la valeur, par exemple `6-0` ou `mai 1982`.
+- **Le 10e duel est le piège** : choisis un écart serré ou une réponse qui surprend.
+- **Une source par duel**, avec son lien. Pour un palmarès qui bouge encore (titres, matchs d'un joueur en activité), écris la date dans l'unité : « titres, au 28 novembre 2026 ».
+
+Pour tester une partie sans garder ton score, ouvre `/plus-ou-moins/?test` : un lien « Effacer ma partie » apparaît en bas du jeu.
 
 **L'icône du site** (« Vd'A », l'apostrophe en bande Hechter) s'affiche dans les onglets, les favoris et les résultats Google. Ses fichiers sont `favicon.ico` et le dossier `assets/icones/` : n'en change pas les noms, Google les retient. Après un changement, Google met de quelques jours à quelques semaines à afficher la nouvelle icône.
 
