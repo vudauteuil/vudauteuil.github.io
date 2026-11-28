@@ -1,0 +1,107 @@
+---
+layout: default
+title: Plus ou moins
+description: "Le jeu de Vu d'Auteuil : dix duels sur l'histoire du PSG, ses records, son identité et ses chiffres. Choisis le bon côté, mise si tu es sûr de toi, et partage ton score."
+permalink: /plus-ou-moins/
+---
+{%- comment -%}
+  Le jeu se remplit tout seul à partir des parties saisies dans Pages CMS
+  (menu « Le jeu », fichier _data/plus_ou_moins.yml). Chaque partie
+  s'ouvre à sa date de mise en ligne. Le moteur du jeu est dans
+  assets/js/plus-ou-moins.js : rien à y changer pour ajouter une partie.
+{%- endcomment -%}
+<article class="page page--large jeu">
+  <div class="conteneur">
+    <p class="etiquette page-etiquette" id="pom-etiquette">Le jeu</p>
+    <h1 class="page-titre">Plus ou moins</h1>
+    <p class="page-intro">Dix duels sur l'histoire du PSG : ses records, ses joueurs, son identité et ses chiffres. À chaque fois, un seul côté l'emporte. À toi de le trouver.</p>
+
+    <div class="pom" id="pom" data-adresse="{{ page.url | absolute_url }}">
+      <noscript><p class="pom-aide">Le jeu a besoin de JavaScript. Active-le dans ton navigateur pour jouer.</p></noscript>
+
+      <div class="pom-barre">
+        <span class="pom-chip" id="pom-serie" hidden></span>
+      </div>
+
+      <section class="pom-jeu" id="pom-jeu" hidden aria-label="Duel en cours">
+        <div class="pom-progression" id="pom-progression" aria-hidden="true"></div>
+        <div class="pom-tete">
+          <span class="pom-etiquettes"><span class="pom-categorie" id="pom-categorie"></span><span class="pom-marque" id="pom-marque" hidden></span></span>
+          <span class="pom-compteur" id="pom-compteur"></span>
+        </div>
+        <h2 class="pom-question" id="pom-question"></h2>
+        <button class="pom-sur" id="pom-sur" type="button" aria-pressed="false">
+          <span class="pom-interrupteur" aria-hidden="true"></span>
+          <span><span class="pom-sur-texte">Je suis sûr</span><span class="pom-sur-detail">+2 si juste, −2 si faux</span></span>
+        </button>
+        <div class="pom-arene" id="pom-arene">
+          <button class="pom-cote" id="pom-cote-a" type="button">
+            <span class="pom-nom" id="pom-nom-a"></span>
+            <span class="pom-precision" id="pom-precision-a"></span>
+            <span class="pom-espace"></span>
+            <span class="pom-tableau" id="pom-valeur-a"></span>
+            <span class="pom-unite" id="pom-unite-a"></span>
+          </button>
+          <span class="pom-vs" aria-hidden="true">VS</span>
+          <button class="pom-cote" id="pom-cote-b" type="button">
+            <span class="pom-nom" id="pom-nom-b"></span>
+            <span class="pom-precision" id="pom-precision-b"></span>
+            <span class="pom-espace"></span>
+            <span class="pom-tableau" id="pom-valeur-b"></span>
+            <span class="pom-unite" id="pom-unite-b"></span>
+          </button>
+        </div>
+        <div class="pom-verdict" id="pom-verdict" aria-live="polite"></div>
+      </section>
+
+      <section class="pom-fin" id="pom-fin" hidden aria-label="Résultat">
+        <div class="pom-score-bloc">
+          <span class="pom-score-libelle" id="pom-fin-libelle"></span>
+          <span class="pom-tableau pom-tableau--score" id="pom-score"></span>
+          <span class="pom-carres" id="pom-carres" aria-hidden="true"></span>
+        </div>
+        <p class="pom-note" id="pom-note"></p>
+        <p class="pom-fin-sous" id="pom-fin-sous" hidden></p>
+        <div class="pom-actions">
+          <button class="bouton bouton--rouge pom-bouton" id="pom-partager" type="button">Partager mon score</button>
+          <span class="pom-copie" id="pom-copie" hidden>Copié : il ne reste qu'à le coller.</span>
+        </div>
+        <div class="pom-secours" id="pom-secours" hidden>
+          <label for="pom-texte-partage">La copie automatique est bloquée ici. Sélectionne le texte et copie-le :</label>
+          <textarea id="pom-texte-partage" readonly></textarea>
+        </div>
+        <p class="pom-prochaine" id="pom-prochaine"></p>
+        <div class="pom-actions">
+          <button class="bouton pom-bouton" id="pom-survie" type="button" hidden></button>
+          <button class="bouton pom-bouton pom-bouton--clair" id="pom-retour" type="button" hidden></button>
+        </div>
+        <h3 class="pom-sous-titre" id="pom-recap-titre">Les réponses</h3>
+        <ul class="pom-recap" id="pom-recap"></ul>
+      </section>
+
+      <section class="pom-vide" id="pom-vide" hidden>
+        <p class="pom-note">Avant-match.</p>
+        <p class="pom-aide" id="pom-vide-texte"></p>
+      </section>
+
+      <section class="pom-archives" id="pom-archives" hidden aria-labelledby="pom-archives-titre">
+        <h3 class="pom-sous-titre" id="pom-archives-titre">Les parties précédentes</h3>
+        <ul class="pom-archives-liste" id="pom-archives-liste"></ul>
+      </section>
+
+      <div class="pom-regles">
+        <p>Une partie de dix duels, la même pour tout le monde. Le dernier duel est le piège. 1 point par bonne réponse, ou 2 avec « Je suis sûr », mais −2 si tu te trompes. Score sur 20.</p>
+        <p>Le mode survie reprend les duels déjà parus, jusqu'à la première erreur. Tes parties restent dans ton navigateur : rien n'est envoyé. Chaque chiffre est sourcé ; les palmarès sont arrêtés à la date de la partie.</p>
+        <button class="pom-lien" id="pom-effacer" type="button" hidden>Effacer ma partie (pour tester)</button>
+      </div>
+    </div>
+
+    <p class="page-suite">
+      <a class="billet-lien" href="{{ '/epopee/' | relative_url }}">L'épopée de la saison →</a>
+      <a class="billet-lien" href="{{ '/breves/' | relative_url }}">Les brèves →</a>
+    </p>
+  </div>
+</article>
+
+<script type="application/json" id="pom-donnees">{{ site.data.plus_ou_moins | jsonify }}</script>
+<script src="{{ '/assets/js/plus-ou-moins.js' | relative_url }}" defer></script>

@@ -7,6 +7,7 @@ s'arrête et le site en ligne reste tel qu'il était.
 
 from __future__ import annotations
 
+import datetime
 import html
 import json
 import re
@@ -26,6 +27,8 @@ ESSENTIELS = [
     "lexique/index.html",
     "chants/index.html",
     "premiere-fois-au-virage/index.html",
+    "plus-ou-moins/index.html",
+    "assets/js/plus-ou-moins.js",
     "assets/partage/vu-dauteuil.png",
     "favicon.ico",
     "assets/icones/favicon.svg",
@@ -40,6 +43,7 @@ MENU = [
     "/lexique/",
     "/chants/",
     "/premiere-fois-au-virage/",
+    "/plus-ou-moins/",
 ]
 
 
@@ -56,6 +60,62 @@ def visible(page: str, debut: str, fin: str) -> str:
     bloc = page.split(debut, 1)[-1].split(fin, 1)[0]
     bloc = re.sub(r"<script.*?</script>", " ", bloc, flags=re.S)
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", bloc))).strip()
+
+
+def valeur_du_jeu(v):
+    """Une valeur de duel : ("date", n) pour AAAA-MM-JJ, ("nombre", x) sinon, None si illisible."""
+    s = "" if v is None else str(v).strip()
+    m = re.match(r"^(\d{1,4})-(\d{2})-(\d{2})", s)
+    if m:
+        try:
+            return ("date", datetime.date(int(m[1]), int(m[2]), int(m[3])).toordinal())
+        except ValueError:
+            return None
+    s = re.sub(r"[\s\u00a0\u202f]", "", s).replace(",", ".", 1).lstrip("≈~")
+    try:
+        return ("nombre", float(s))
+    except ValueError:
+        return None
+
+
+def verifier_jeu(page: str) -> list[str]:
+    """Chaque partie du jeu doit avoir 10 duels, chacun avec un gagnant."""
+    m = re.search(r'<script type="application/json" id="pom-donnees">(.*?)</script>', page, flags=re.S)
+    if not m:
+        return ["Données du jeu absentes de /plus-ou-moins/"]
+    try:
+        donnees = json.loads(m.group(1))
+    except ValueError as e:
+        return [f"Données du jeu illisibles : {e}"]
+    erreurs, dates = [], []
+    parties = (donnees or {}).get("parties") or []
+    for n, p in enumerate(parties, 1):
+        date = str(p.get("date") or "")[:10]
+        nom = f"partie du {date}" if date else f"partie n°{n}"
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
+            erreurs.append(f"Jeu, {nom} : date de mise en ligne manquante ou illisible")
+        elif date in dates:
+            erreurs.append(f"Jeu : deux parties à la même date ({date})")
+        dates.append(date)
+        duels = p.get("duels") or []
+        if len(duels) != 10:
+            erreurs.append(f"Jeu, {nom} : {len(duels)} duel(s) au lieu de 10")
+        for i, d in enumerate(duels, 1):
+            ou = f"Jeu, {nom}, duel {i}"
+            for champ, libelle in (("question", "Question"), ("a_nom", "Choix de gauche : nom"), ("b_nom", "Choix de droite : nom")):
+                if not str(d.get(champ) or "").strip():
+                    erreurs.append(f"{ou} : le champ « {libelle} » est vide")
+            a, b = valeur_du_jeu(d.get("a_valeur")), valeur_du_jeu(d.get("b_valeur"))
+            if a is None or b is None:
+                erreurs.append(f"{ou} : valeur illisible (écris un nombre, ou une date AAAA-MM-JJ)")
+            elif a[0] != b[0]:
+                erreurs.append(f"{ou} : une valeur est une date et l'autre un nombre")
+            elif a[1] == b[1]:
+                erreurs.append(f"{ou} : les deux valeurs sont égales, il n'y a pas de gagnant")
+            if str(d.get("sens") or "") not in ("plus grand", "plus petit"):
+                erreurs.append(f"{ou} : « Qui gagne ? » doit valoir « plus grand » ou « plus petit »")
+    print(f"Jeu : {len(parties)} partie(s) · " + " · ".join(dates))
+    return erreurs
 
 
 def main() -> int:
@@ -114,6 +174,10 @@ def main() -> int:
     if chants.is_file():
         ancres = re.findall(r'<article class="chant" id="([^"]+)"', texte(chants))
         print(f"Chants : {len(ancres)} chants ·", " ".join(ancres))
+
+    jeu = SITE / "plus-ou-moins" / "index.html"
+    if jeu.is_file():
+        erreurs.extend(verifier_jeu(texte(jeu)))
 
     # Le menu : chaque rubrique ouvre sa propre page, soulignée quand on y est.
     for rubrique in MENU:

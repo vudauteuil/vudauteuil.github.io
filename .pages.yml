@@ -243,6 +243,96 @@ content:
             type: text
             description: "Raconte le chant avec tes mots. Ne recopie pas les paroles : elles sont protégées par le droit d'auteur."
 
+  - name: jeu
+    label: "Le jeu : Plus ou moins"
+    type: file
+    path: _data/plus_ou_moins.yml
+    format: yaml
+    fields:
+      - name: parties
+        label: Parties
+        type: object
+        list: true
+        description: "Une partie = 10 duels. Le 10e est toujours le piège. Chaque partie s'ouvre sur le site à sa date de mise en ligne."
+        fields:
+          - name: date
+            label: Date de mise en ligne
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: duels
+            label: Les 10 duels (le dernier est le piège)
+            type: object
+            list: true
+            fields:
+              - name: categorie
+                label: Catégorie
+                type: select
+                required: true
+                options:
+                  values: [Record du club, Record d'un joueur, Histoire, Identité du club, Économie, Fun fact]
+              - name: question
+                label: Question
+                type: string
+                required: true
+                description: "Ex. : Qui a marqué le plus de buts avec Paris ?"
+              - name: sens
+                label: Qui gagne ?
+                type: select
+                required: true
+                description: "« plus grand » : le plus grand nombre gagne. « plus petit » : le plus petit nombre, ou la date la plus ancienne, gagne."
+                options:
+                  values: [plus grand, plus petit]
+              - name: unite
+                label: Unité
+                type: string
+                description: "Affichée sous les chiffres. Ex. : buts, toutes compétitions"
+              - name: a_nom
+                label: "Choix de gauche : nom"
+                type: string
+                required: true
+              - name: a_precision
+                label: "Choix de gauche : précision"
+                type: string
+                description: "Ex. : 2013-2020, ou Ligue 1, octobre 2016"
+              - name: a_valeur
+                label: "Choix de gauche : valeur"
+                type: string
+                required: true
+                description: "Un nombre (200, 836,1) ou une date au format AAAA-MM-JJ (1982-05-15). C'est elle qui décide du gagnant."
+              - name: a_affiche
+                label: "Choix de gauche : texte affiché (facultatif)"
+                type: string
+                description: "À la place de la valeur. Ex. : 6-0, mai 1982, ≈ 50"
+              - name: b_nom
+                label: "Choix de droite : nom"
+                type: string
+                required: true
+              - name: b_precision
+                label: "Choix de droite : précision"
+                type: string
+              - name: b_valeur
+                label: "Choix de droite : valeur"
+                type: string
+                required: true
+                description: "Un nombre ou une date au format AAAA-MM-JJ. Jamais la même que celle de gauche : il faut un gagnant."
+              - name: b_affiche
+                label: "Choix de droite : texte affiché (facultatif)"
+                type: string
+              - name: anecdote
+                label: Anecdote
+                type: text
+                description: "Une ou deux phrases, montrées après la réponse."
+              - name: source
+                label: Source
+                type: string
+                description: "Ex. : Wikipédia, records du PSG"
+              - name: lien
+                label: Lien de la source
+                type: string
+                description: "L'adresse de la page, en https://"
+
   - name: pages
     label: Pages fixes
     type: collection
